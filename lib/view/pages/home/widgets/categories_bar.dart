@@ -35,7 +35,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 5),
               color: typeData['isSelected']
-                  ? Colors.grey[300]
+                  ? const Color.fromARGB(185, 235, 238, 243)
                   : Colors.transparent,
               child: TextButton(
                 child: Text(typeData['text'],
