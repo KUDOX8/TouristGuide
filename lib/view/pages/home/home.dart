@@ -3,6 +3,7 @@ import 'package:tourist_guide/view/pages/home/widgets/bottom_nav_bar.dart';
 import 'package:tourist_guide/view/pages/home/widgets/categories_bar.dart';
 import 'package:tourist_guide/view/pages/home/widgets/top_bar.dart';
 import 'package:tourist_guide/view/pages/search/widgets/search_bar.dart';
+import 'package:tourist_guide/view/place_card/place_card.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,16 +19,30 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-        child: Column(children: const [
-          SizedBox(
+        child: Column(children: [
+          const SizedBox(
             height: 40,
           ),
-          TopBar(),
-          SizedBox(
+          const TopBar(),
+          const SizedBox(
             height: 50,
           ),
-          SearchBar(),
-          CategoriesBar(),
+          const SearchBar(),
+          const SizedBox(
+            height: 25,
+          ),
+          const CategoriesBar(),
+          Expanded(
+            child: GridView.count(
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              scrollDirection: Axis.vertical,
+              crossAxisCount: 2,
+              children: List.generate(10, (index) {
+                return const PlaceCard();
+              }),
+            ),
+          )
         ]),
       ),
       bottomNavigationBar: const BottomNav(),
