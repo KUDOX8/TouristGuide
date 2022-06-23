@@ -5,6 +5,8 @@ import 'package:tourist_guide/view/pages/home/widgets/top_bar.dart';
 import 'package:tourist_guide/view/pages/search/widgets/search_bar.dart';
 import 'package:tourist_guide/view/place_card/place_card.dart';
 
+import './../../../models/place_model.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,6 +15,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // hardcoded places for testing purposes. Will be deleted when we add the database.
+  List<PlaceCard> placeCards = [
+    PlaceCard(PlaceModel(
+      placeID: 1,
+      placeName: "Al-Qara Hill",
+      placeType: "",
+      numberOfStars: 5,
+      imageURL: "assets/Alqara.jpg",
+    )),
+    PlaceCard(PlaceModel(
+      placeID: 2,
+      placeName: "Jawatha Park.jpg",
+      placeType: "",
+      numberOfStars: 4.5,
+      imageURL: "assets/Jawatha_Park.jpg",
+    )),
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
@@ -38,9 +58,7 @@ class _HomeState extends State<Home> {
               crossAxisSpacing: 10,
               scrollDirection: Axis.vertical,
               crossAxisCount: 2,
-              children: List.generate(10, (index) {
-                return const PlaceCard();
-              }),
+              children: placeCards,
             ),
           )
         ]),

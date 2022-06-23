@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../models/place_model.dart';
+
 class PlaceCard extends StatelessWidget {
-  const PlaceCard({Key? key}) : super(key: key);
+  final PlaceModel placeModel;
+  const PlaceCard(this.placeModel, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +15,8 @@ class PlaceCard extends StatelessWidget {
       height: 210,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          image: const DecorationImage(
-            image: AssetImage("assets/Alqara.jpg"),
+          image: DecorationImage(
+            image: AssetImage(placeModel.imageURL),
             fit: BoxFit.cover,
           )),
       child: Column(
@@ -26,8 +29,8 @@ class PlaceCard extends StatelessWidget {
               color: const Color.fromRGBO(77, 86, 82, 1.0),
               borderRadius: BorderRadius.circular(10.0),
             ),
-            child: const Text(
-              "Al-Qara hill",
+            child: Text(
+              placeModel.placeName,
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -35,18 +38,34 @@ class PlaceCard extends StatelessWidget {
             height: 5,
           ),
           Container(
-              width: 45,
-              padding: const EdgeInsets.all(5.0),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: const Color.fromRGBO(77, 86, 82, 1.0)),
-              child: Row(
-                children: [
-                  SvgPicture.asset("assets/icons/star.svg"),
-                  const SizedBox(
-                    width: 3,
-                  ),
-                  const Text("5", style: TextStyle(color: Colors.white)),
-                ],
-              ))
+            width: 45,
+            padding: const EdgeInsets.all(5.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: const Color.fromRGBO(77, 86, 82, 1.0)),
+            child: Row(
+              children: [
+                SvgPicture.asset("assets/icons/star.svg"),
+                const SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  placeModel.numberOfStars.toString(),
+                  /* 
+                  We get A RenderFlex overflowed in the above line.
+                  The error is caused when outputting a double value, I believe
+                  that issue is caused because there is place for only for
+                  2 character
+                  try  3.toString(),
+                  and (3.5).toString(),
+                  and "3.",
+                  to understand the bug.
+                  */
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
