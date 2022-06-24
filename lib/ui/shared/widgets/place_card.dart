@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/ui/shared/widgets/favorite_button.dart';
 
 class PlaceCard extends StatefulWidget {
   final PlaceModel placeModel;
@@ -11,7 +12,6 @@ class PlaceCard extends StatefulWidget {
 }
 
 class _PlaceCardState extends State<PlaceCard> {
-  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,25 +62,7 @@ class _PlaceCardState extends State<PlaceCard> {
                   ],
                 ),
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(40),
-                child: Container(
-                  width: 29,
-                  height: 29,
-                  color: Colors.white,
-                  child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isFavorite = !isFavorite;
-                        });
-                      },
-                      icon: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_outline,
-                        size: 15,
-                        color: Colors.red,
-                      )),
-                ),
-              ),
+              const FavoriteButton(),
             ],
           ),
         ],

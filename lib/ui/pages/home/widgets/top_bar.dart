@@ -24,7 +24,7 @@ class TopBar extends StatelessWidget {
             )
           ],
         ),
-        Image.asset('assets/AlAhsa_logo.png', height: 70),
+        Image.asset('assets/images/AlAhsa_logo.png', height: 70),
       ],
     );
   }
