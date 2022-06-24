@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/view/pages/home/widgets/bottom_nav_bar.dart';
-import 'package:tourist_guide/view/pages/home/widgets/categories_bar.dart';
-import 'package:tourist_guide/view/pages/home/widgets/top_bar.dart';
-import 'package:tourist_guide/view/pages/search/widgets/search_bar.dart';
-import 'package:tourist_guide/view/place_card/place_card.dart';
-
-import './../../../models/place_model.dart';
+import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/ui/pages/home/widgets/bottom_nav_bar.dart';
+import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
+import 'package:tourist_guide/ui/pages/home/widgets/top_bar.dart';
+import 'package:tourist_guide/ui/pages/search/widgets/search_bar.dart';
+import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,6 +22,41 @@ class _HomeState extends State<Home> {
       placeType: "",
       numberOfStars: 5,
       imageURL: "assets/Alqara.jpg",
+    )),
+    PlaceCard(PlaceModel(
+      placeID: 2,
+      placeName: "Jawatha Park",
+      placeType: "",
+      numberOfStars: 4.5,
+      imageURL: "assets/Jawatha_Park.jpg",
+    )),
+    PlaceCard(PlaceModel(
+      placeID: 2,
+      placeName: "Jawatha Park",
+      placeType: "",
+      numberOfStars: 4.5,
+      imageURL: "assets/Jawatha_Park.jpg",
+    )),
+    PlaceCard(PlaceModel(
+      placeID: 2,
+      placeName: "Jawatha Park",
+      placeType: "",
+      numberOfStars: 4.5,
+      imageURL: "assets/Jawatha_Park.jpg",
+    )),
+    PlaceCard(PlaceModel(
+      placeID: 2,
+      placeName: "Jawatha Park",
+      placeType: "",
+      numberOfStars: 4.5,
+      imageURL: "assets/Jawatha_Park.jpg",
+    )),
+    PlaceCard(PlaceModel(
+      placeID: 2,
+      placeName: "Jawatha Park",
+      placeType: "",
+      numberOfStars: 4.5,
+      imageURL: "assets/Jawatha_Park.jpg",
     )),
     PlaceCard(PlaceModel(
       placeID: 2,

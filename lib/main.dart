@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/view/pages/home/home.dart';
+import 'package:tourist_guide/ui/pages/home/home.dart';
 
 void main() {
   runApp(const MyApp());
