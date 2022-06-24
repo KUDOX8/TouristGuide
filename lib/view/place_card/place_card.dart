@@ -31,14 +31,14 @@ class PlaceCard extends StatelessWidget {
             ),
             child: Text(
               placeModel.placeName,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
           const SizedBox(
             height: 5,
           ),
           Container(
-            width: 45,
+            width: 55,
             padding: const EdgeInsets.all(5.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
@@ -61,7 +61,7 @@ class PlaceCard extends StatelessWidget {
                   and "3.",
                   to understand the bug.
                   */
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),

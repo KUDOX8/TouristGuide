@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
     )),
     PlaceCard(PlaceModel(
       placeID: 2,
-      placeName: "Jawatha Park.jpg",
+      placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/Jawatha_Park.jpg",
