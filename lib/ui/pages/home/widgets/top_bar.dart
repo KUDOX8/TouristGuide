@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/constants.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({Key? key}) : super(key: key);
@@ -17,10 +18,7 @@ class TopBar extends StatelessWidget {
             ),
             const Text(
               'Al-Ahsa',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, color: black, fontWeight: FontWeight.bold),
             )
           ],
         ),

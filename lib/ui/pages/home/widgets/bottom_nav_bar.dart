@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/constants.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -17,24 +18,12 @@ class _BottomNavState extends State<BottomNav> {
       borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
       child: NavigationBar(
         height: 75,
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: white,
         destinations: [
-          NavigationDestination(
-              icon: Icon(Icons.home_outlined,
-                  color: isSelected[0] ? Colors.black : Colors.grey),
-              label: ''),
-          NavigationDestination(
-              icon: Icon(Icons.confirmation_number_outlined,
-                  color: isSelected[1] ? Colors.black : Colors.grey),
-              label: ''),
-          NavigationDestination(
-              icon: Icon(Icons.favorite_border_outlined,
-                  color: isSelected[2] ? Colors.black : Colors.grey),
-              label: ''),
-          NavigationDestination(
-              icon: Icon(Icons.person_outline,
-                  color: isSelected[3] ? Colors.black : Colors.grey),
-              label: ''),
+          NavigationDestination(icon: Icon(Icons.home_outlined, color: isSelected[0] ? black : grey), label: ''),
+          NavigationDestination(icon: Icon(Icons.confirmation_number_outlined, color: isSelected[1] ? black : grey), label: ''),
+          NavigationDestination(icon: Icon(Icons.favorite_border_outlined, color: isSelected[2] ? black : grey), label: ''),
+          NavigationDestination(icon: Icon(Icons.person_outline, color: isSelected[3] ? black : grey), label: ''),
         ],
         onDestinationSelected: (index) {
           setState(() {

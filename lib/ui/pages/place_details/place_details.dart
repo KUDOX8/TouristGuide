@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tourist_guide/constants.dart';
 import 'package:tourist_guide/ui/pages/place_details/widgets/navigator_button.dart';
 import 'package:tourist_guide/ui/shared/widgets/favorite_button.dart';
 
@@ -43,9 +44,7 @@ class _PlaceDetailsState extends State<PlaceDetails> {
                   child: Container(
                     width: 35,
                     height: 35,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: white),
                     child: Center(
                       child: IconButton(
                           onPressed: () {},
@@ -57,13 +56,10 @@ class _PlaceDetailsState extends State<PlaceDetails> {
                     ),
                   ),
                 ),
-                Positioned(
-                    top: _screenSize.height * 0.33,
-                    right: _screenSize.width * 0.05,
-                    child: const FavoriteButton()),
+                Positioned(top: _screenSize.height * 0.33, right: _screenSize.width * 0.05, child: const FavoriteButton()),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             const Text(
@@ -77,15 +73,15 @@ class _PlaceDetailsState extends State<PlaceDetails> {
               children: [
                 const Text(
                   '4.5',
-                  style: TextStyle(color: Colors.grey, fontSize: 10),
+                  style: TextStyle(color: grey, fontSize: 10),
                 ),
                 SvgPicture.asset("assets/icons/star.svg", width: 15),
                 const SizedBox(
                   width: 3,
                 ),
                 const Text(
-                  '(325 Riviews)',
-                  style: TextStyle(color: Colors.grey, fontSize: 10),
+                  '(325 Reviews)',
+                  style: TextStyle(color: grey, fontSize: 10),
                 ),
               ],
             ),
@@ -105,7 +101,7 @@ class _PlaceDetailsState extends State<PlaceDetails> {
                 fontSize: 12,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -128,14 +124,11 @@ class _PlaceDetailsState extends State<PlaceDetails> {
                     ),
                     Text(
                       '10 SAR',
-                      style: TextStyle(
-                          color: Colors.greenAccent[400],
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.greenAccent[400], fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-                NavigationButton(),
+                const NavigationButton(),
               ],
             ),
           ],

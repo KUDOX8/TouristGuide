@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tourist_guide/constants.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/shared/widgets/favorite_button.dart';
 
 class PlaceCard extends StatefulWidget {
   final PlaceModel placeModel;
+
   const PlaceCard(this.placeModel, {Key? key}) : super(key: key);
 
   @override
@@ -29,12 +31,12 @@ class _PlaceCardState extends State<PlaceCard> {
           Container(
             padding: const EdgeInsets.all(5.0),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(77, 86, 82, 1.0),
+              color: lightBlack,
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Text(
               widget.placeModel.placeName,
-              style: const TextStyle(color: Colors.white, fontSize: 10),
+              style: const TextStyle(color: white, fontSize: 10),
             ),
           ),
           const SizedBox(
@@ -46,9 +48,7 @@ class _PlaceCardState extends State<PlaceCard> {
               Container(
                 width: 48,
                 padding: const EdgeInsets.all(5.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: const Color.fromRGBO(77, 86, 82, 1.0)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: lightBlack),
                 child: Row(
                   children: [
                     SvgPicture.asset("assets/icons/star.svg", width: 15),
@@ -57,7 +57,7 @@ class _PlaceCardState extends State<PlaceCard> {
                     ),
                     Text(
                       widget.placeModel.numberOfStars.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 10),
+                      style: const TextStyle(color: white, fontSize: 10),
                     ),
                   ],
                 ),
