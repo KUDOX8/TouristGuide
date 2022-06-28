@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
+
 class FavoriteButton extends StatefulWidget {
   const FavoriteButton({Key? key}) : super(key: key);
 
@@ -9,6 +11,7 @@ class FavoriteButton extends StatefulWidget {
 
 class _FavoriteButtonState extends State<FavoriteButton> {
   bool isFavorite = false;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -22,11 +25,11 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         child: Container(
           width: 40,
           height: 40,
-          color: Colors.white,
+          color: white,
           child: Icon(
             isFavorite ? Icons.favorite : Icons.favorite_outline,
             size: 25,
-            color: Colors.red,
+            color: red,
           ),
         ),
       ),

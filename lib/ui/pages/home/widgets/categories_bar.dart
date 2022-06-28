@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/constants.dart';
 
 class CategoriesBar extends StatefulWidget {
   const CategoriesBar({Key? key}) : super(key: key);
@@ -12,11 +13,11 @@ class _CategoriesBarState extends State<CategoriesBar> {
     {'text': 'All', 'isSelected': true},
     {'text': 'Restuarant', 'isSelected': false},
     {'text': 'Cafe', 'isSelected': false},
-    {'text': 'Hestorical', 'isSelected': false},
+    {'text': 'Historical', 'isSelected': false},
     {'text': 'Shops', 'isSelected': false},
   ];
-  TextStyle notSelectedStyle = const TextStyle(color: Colors.grey);
-  TextStyle selectedStyle = const TextStyle(color: Colors.black);
+  TextStyle notSelectedStyle = const TextStyle(color: grey);
+  TextStyle selectedStyle = const TextStyle(color: black);
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +35,9 @@ class _CategoriesBarState extends State<CategoriesBar> {
             borderRadius: BorderRadius.circular(20),
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 5),
-              color: typeData['isSelected']
-                  ? const Color.fromARGB(185, 235, 238, 243)
-                  : Colors.transparent,
+              color: typeData['isSelected'] ? catgSelect : transparent,
               child: TextButton(
-                child: Text(typeData['text'],
-                    style: typeData['isSelected']
-                        ? selectedStyle
-                        : notSelectedStyle),
+                child: Text(typeData['text'], style: typeData['isSelected'] ? selectedStyle : notSelectedStyle),
                 onPressed: () {
                   setState(() {
                     for (var element in type) {
