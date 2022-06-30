@@ -37,7 +37,10 @@ class _CategoriesBarState extends State<CategoriesBar> {
               padding: const EdgeInsets.symmetric(vertical: 5),
               color: typeData['isSelected'] ? catgSelect : transparent,
               child: TextButton(
-                child: Text(typeData['text'], style: typeData['isSelected'] ? selectedStyle : notSelectedStyle),
+                child: Text(typeData['text'],
+                    style: typeData['isSelected']
+                        ? selectedStyle
+                        : notSelectedStyle),
                 onPressed: () {
                   setState(() {
                     for (var element in type) {

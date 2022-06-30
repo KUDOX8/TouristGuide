@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tourist_guide/constants.dart';
 import 'package:tourist_guide/ui/pages/place_details/widgets/navigator_button.dart';
@@ -28,6 +26,10 @@ class _PlaceDetailsState extends State<PlaceDetails> {
               alignment: Alignment.bottomRight,
               clipBehavior: Clip.none,
               children: [
+                SizedBox(
+                  height: _screenSize.height * 0.39,
+                  width: _screenSize.width,
+                ),
                 Container(
                   height: _screenSize.height * 0.35,
                   width: _screenSize.width,
@@ -39,24 +41,28 @@ class _PlaceDetailsState extends State<PlaceDetails> {
                       )),
                 ),
                 Positioned(
-                  top: 10,
-                  left: 10,
+                  top: _screenSize.height * 0.50 / 10,
+                  left: 25,
                   child: Container(
                     width: 35,
                     height: 35,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: white),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8), color: white),
                     child: Center(
                       child: IconButton(
                           onPressed: () {},
                           icon: const Icon(
                             Icons.arrow_back_ios,
-                            color: Colors.grey,
+                            color: grey,
                             size: 16,
                           )),
                     ),
                   ),
                 ),
-                Positioned(top: _screenSize.height * 0.33, right: _screenSize.width * 0.05, child: const FavoriteButton()),
+                Positioned(
+                    top: _screenSize.height * 0.36,
+                    right: _screenSize.width * 0.05,
+                    child: const FavoriteButton()),
               ],
             ),
             const SizedBox(
@@ -117,14 +123,17 @@ class _PlaceDetailsState extends State<PlaceDetails> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'Price',
                       style: TextStyle(fontSize: 10),
                     ),
                     Text(
                       '10 SAR',
-                      style: TextStyle(color: Colors.greenAccent[400], fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: priceColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
