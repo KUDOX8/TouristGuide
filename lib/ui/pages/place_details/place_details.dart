@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tourist_guide/constants.dart';
+import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/ui/pages/place_details/widgets/navigator_button.dart';
 import 'package:tourist_guide/ui/shared/widgets/favorite_button.dart';
 
