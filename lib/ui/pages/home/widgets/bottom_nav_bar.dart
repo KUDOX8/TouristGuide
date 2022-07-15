@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/constants.dart';
+import 'package:tourist_guide/utils/constants.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({Key? key}) : super(key: key);
@@ -20,10 +20,22 @@ class _BottomNavState extends State<BottomNav> {
         height: 75,
         backgroundColor: white,
         destinations: [
-          NavigationDestination(icon: Icon(Icons.home_outlined, color: isSelected[0] ? black : grey), label: ''),
-          NavigationDestination(icon: Icon(Icons.confirmation_number_outlined, color: isSelected[1] ? black : grey), label: ''),
-          NavigationDestination(icon: Icon(Icons.favorite_border_outlined, color: isSelected[2] ? black : grey), label: ''),
-          NavigationDestination(icon: Icon(Icons.person_outline, color: isSelected[3] ? black : grey), label: ''),
+          NavigationDestination(
+              icon: Icon(Icons.home_outlined,
+                  color: isSelected[0] ? black : grey),
+              label: ''),
+          NavigationDestination(
+              icon: Icon(Icons.confirmation_number_outlined,
+                  color: isSelected[1] ? black : grey),
+              label: ''),
+          NavigationDestination(
+              icon: Icon(Icons.favorite_border_outlined,
+                  color: isSelected[2] ? black : grey),
+              label: ''),
+          NavigationDestination(
+              icon: Icon(Icons.person_outline,
+                  color: isSelected[3] ? black : grey),
+              label: ''),
         ],
         onDestinationSelected: (index) {
           setState(() {

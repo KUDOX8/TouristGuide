@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494685654187",
+    "project_id": "cool-agility-341013",
+    "storage_bucket": "cool-agility-341013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494685654187:android:ef67e5ff79f19f910c3bee",
+        "android_client_info": {
+          "package_name": "com.example.tourist_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494685654187-hliajngdce4pbfo35tj8g46rdldn1plm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEcPgY6ez5MTmKB99D8h0DuLBIaWhYH8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494685654187-hliajngdce4pbfo35tj8g46rdldn1plm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/notifiers/cafe_notifier.dart';
-import 'package:tourist_guide/core/notifiers/restuarant_notifier.dart';
+import 'package:tourist_guide/core/notifiers/restaurant_notifier.dart';
 import 'package:tourist_guide/core/notifiers/shop_notifier.dart';
 import 'package:tourist_guide/ui/pages/home/home.dart';
 import 'package:tourist_guide/ui/pages/place_details/place_details.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: CafeNotifier()),
-        ChangeNotifierProvider.value(value: RestuarantNotifier()),
+        ChangeNotifierProvider.value(value: RestaurantNotifier()),
         ChangeNotifierProvider.value(value: ShopNotifier()),
       ],
       child: const MaterialApp(

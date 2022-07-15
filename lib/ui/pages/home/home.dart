@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/core/notifiers/cafe_notifier.dart';
+import 'package:tourist_guide/core/notifiers/restaurant_notifier.dart';
+import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/bottom_nav_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/top_bar.dart';
@@ -63,16 +67,29 @@ class _HomeState extends State<Home> {
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
-      imageURL: "assets//images/Jawatha_Park.jpg",
+      imageURL: "assets/images/Jawatha_Park.jpg",
     )),
     PlaceCard(PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
-      imageURL: "assets//images/Jawatha_Park.jpg",
+      imageURL: "assets/images/Jawatha_Park.jpg",
     )),
   ];
+
+  @override
+  void initState() {
+    CafeNotifier _cafeNotifier =
+        Provider.of<CafeNotifier>(context, listen: false);
+    RestaurantNotifier _restaurantNotifier =
+        Provider.of<RestaurantNotifier>(context, listen: false);
+
+    DatabaseService().getPlaces(_cafeNotifier, 'cafes');
+    DatabaseService().getPlaces(_restaurantNotifier, 'restaurants');
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/constants.dart';
+import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/pages/search/search.dart';
 

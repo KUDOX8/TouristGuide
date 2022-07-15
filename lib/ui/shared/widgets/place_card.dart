@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tourist_guide/constants.dart';
+import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/shared/widgets/favorite_button.dart';
 
@@ -48,7 +48,9 @@ class _PlaceCardState extends State<PlaceCard> {
               Container(
                 width: 48,
                 padding: const EdgeInsets.all(5.0),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: lightBlack),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: lightBlack),
                 child: Row(
                   children: [
                     SvgPicture.asset("assets/icons/star.svg", width: 15),

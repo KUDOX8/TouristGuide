@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/constants.dart';
+import 'package:tourist_guide/utils/constants.dart';
 
 class CategoriesBar extends StatefulWidget {
   const CategoriesBar({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class CategoriesBar extends StatefulWidget {
 class _CategoriesBarState extends State<CategoriesBar> {
   List<Map> type = [
     {'text': 'All', 'isSelected': true},
-    {'text': 'Restuarant', 'isSelected': false},
+    {'text': 'Restaurant', 'isSelected': false},
     {'text': 'Cafe', 'isSelected': false},
     {'text': 'Historical', 'isSelected': false},
     {'text': 'Shops', 'isSelected': false},
