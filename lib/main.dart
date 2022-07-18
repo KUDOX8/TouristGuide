@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/notifiers/cafe_notifier.dart';
@@ -6,7 +7,9 @@ import 'package:tourist_guide/core/notifiers/shop_notifier.dart';
 import 'package:tourist_guide/ui/pages/home/home.dart';
 import 'package:tourist_guide/ui/pages/place_details/place_details.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

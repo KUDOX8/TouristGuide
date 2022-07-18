@@ -77,6 +77,9 @@ class _HomeState extends State<Home> {
       imageURL: "assets/images/Jawatha_Park.jpg",
     )),
   ];
+  List<PlaceCard> all = [];
+  List<PlaceCard> cafes = [];
+  List<PlaceCard> restaurants = [];
 
   @override
   void initState() {
@@ -88,6 +91,14 @@ class _HomeState extends State<Home> {
     DatabaseService().getPlaces(_cafeNotifier, 'cafes');
     DatabaseService().getPlaces(_restaurantNotifier, 'restaurants');
 
+    for (var placeModel in _cafeNotifier.placeList) {
+      cafes.add(PlaceCard(placeModel));
+    }
+    for (var placeModel in _restaurantNotifier.placeList) {
+      restaurants.add(PlaceCard(placeModel));
+    }
+    all.addAll(cafes);
+    all.addAll(restaurants);
     super.initState();
   }
 

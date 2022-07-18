@@ -4,7 +4,7 @@ import 'package:tourist_guide/core/models/place_model.dart';
 class DatabaseService {
   final FirebaseFirestore _storeInstance = FirebaseFirestore.instance;
 
-  getPlaces(dynamic placeNotifier, String collectionName) async {
+  void getPlaces(dynamic placeNotifier, String collectionName) async {
     QuerySnapshot cafeSnapshot =
         await _storeInstance.collection(collectionName).get();
 

@@ -6,7 +6,7 @@ const Color grey = Colors.grey;
 const Color white = Colors.white;
 const Color transparent = Colors.transparent;
 
-const Color catgSelect = Color.fromARGB(185, 235, 238, 243);
+const Color selectedCategory = Color.fromARGB(185, 235, 238, 243);
 
 const Color priceColor = Color.fromRGBO(0, 230, 118, 1);
 
