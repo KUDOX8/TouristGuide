@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
-import 'package:tourist_guide/ui/pages/search/search.dart';
+import 'package:tourist_guide/ui/pages/search/search_page.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);

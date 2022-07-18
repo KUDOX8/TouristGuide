@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/ui/pages/place_details/widgets/navigator_button.dart';
 import 'package:tourist_guide/ui/shared/widgets/favorite_button.dart';
 
-class PlaceDetails extends StatefulWidget {
-  const PlaceDetails({Key? key}) : super(key: key);
+class PlaceDetailsPage extends StatefulWidget {
+  final PlaceModel placeModel;
+  const PlaceDetailsPage({Key? key, required this.placeModel})
+      : super(key: key);
 
   @override
-  State<PlaceDetails> createState() => _PlaceDetailsState();
+  State<PlaceDetailsPage> createState() => _PlaceDetailsPageState();
 }
 
-class _PlaceDetailsState extends State<PlaceDetails> {
+class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
   @override
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
@@ -35,8 +38,8 @@ class _PlaceDetailsState extends State<PlaceDetails> {
                   width: _screenSize.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/Jawatha_Park.jpg'),
+                      image: DecorationImage(
+                        image: AssetImage(widget.placeModel.imageURL),
                         fit: BoxFit.cover,
                       )),
                 ),
@@ -50,7 +53,9 @@ class _PlaceDetailsState extends State<PlaceDetails> {
                         borderRadius: BorderRadius.circular(8), color: white),
                     child: Center(
                       child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           icon: const Icon(
                             Icons.arrow_back_ios,
                             color: grey,
@@ -68,18 +73,18 @@ class _PlaceDetailsState extends State<PlaceDetails> {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              'Jawatha Park',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Text(
+              widget.placeModel.placeName,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 10,
             ),
             Row(
               children: [
-                const Text(
-                  '4.5',
-                  style: TextStyle(color: grey, fontSize: 10),
+                Text(
+                  widget.placeModel.numberOfStars.toString(),
+                  style: const TextStyle(color: grey, fontSize: 10),
                 ),
                 SvgPicture.asset("assets/icons/star.svg", width: 15),
                 const SizedBox(
