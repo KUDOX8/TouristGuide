@@ -9,6 +9,7 @@ import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/top_bar.dart';
 import 'package:tourist_guide/ui/pages/search/widgets/search_bar.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
+import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,63 +20,63 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // hardcoded places for testing purposes. Will be deleted when we add the database.
-  List<PlaceCard> placeCards = [
-    PlaceCard(PlaceModel(
+  List<PlaceModel> placeModelList = [
+    PlaceModel(
       placeID: 1,
       placeName: "Al-Qara Hill",
       placeType: "",
       numberOfStars: 5,
       imageURL: "assets/images/Alqara.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
+    ),
   ];
   List<PlaceCard> all = [];
   List<PlaceCard> cafes = [];
@@ -121,16 +122,7 @@ class _HomeState extends State<Home> {
             height: 25,
           ),
           const CategoriesBar(),
-          Expanded(
-            child: GridView.count(
-              childAspectRatio: 0.7 / 1,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              scrollDirection: Axis.vertical,
-              crossAxisCount: 2,
-              children: placeCards,
-            ),
-          )
+          Expanded(child: PlaceGenerator(placeList: placeModelList))
         ]),
       ),
       bottomNavigationBar: const BottomNav(),

@@ -38,6 +38,7 @@ class _BottomNavState extends State<BottomNav> {
               label: ''),
         ],
         onDestinationSelected: (index) {
+          Navigator.pushNamed(context, favoritePage);
           setState(() {
             _currentIndex = index;
             isSelected = [false, false, false, false];

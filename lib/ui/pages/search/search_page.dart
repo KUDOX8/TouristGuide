@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
+import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   late List<PlaceModel> placesList;
@@ -27,47 +28,41 @@ class CustomSearchDelegate extends SearchDelegate {
               close(context, null);
             },
             icon: const Icon(Icons.arrow_back)),
-        const SizedBox(
-          height: 10,
-        ),
       ],
     );
   }
 
   @override
-  Widget buildResults(BuildContext context) {
-    List<PlaceCard> matchQuery = [];
+  Widget buildSuggestions(BuildContext context) {
+    List<PlaceModel> matchQuery = [];
     for (PlaceModel place in placesList) {
       if (place.placeName.toLowerCase().contains(query.toLowerCase().trim())) {
-        matchQuery.add(PlaceCard(place));
+        matchQuery.add(place);
       }
     }
 
-    return GridView.count(
-      childAspectRatio: 0.7 / 1,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      scrollDirection: Axis.vertical,
-      crossAxisCount: 2,
-      children: matchQuery,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: PlaceGenerator(placeList: matchQuery),
     );
   }
 
   @override
-  Widget buildSuggestions(BuildContext context) {
-    List<PlaceCard> matchQuery = [];
+  Widget buildResults(BuildContext context) {
+    List<PlaceModel> matchQuery = [];
     for (PlaceModel place in placesList) {
       if (place.placeName.toLowerCase().contains(query.toLowerCase().trim())) {
-        matchQuery.add(PlaceCard(place));
+        matchQuery.add(place);
       }
     }
-    return GridView.count(
-      childAspectRatio: 0.7 / 1,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      scrollDirection: Axis.vertical,
-      crossAxisCount: 2,
-      children: matchQuery,
-    );
+
+    return matchQuery.isEmpty
+        ? const Center(
+            child: Text('No place to display'),
+          )
+        : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: PlaceGenerator(placeList: matchQuery),
+          );
   }
 }

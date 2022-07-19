@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
-import 'package:tourist_guide/ui/pages/bookmark/bookmark_page.dart';
+import 'package:tourist_guide/ui/pages/favorite/favorite_page.dart';
 import 'package:tourist_guide/ui/pages/home/home_page.dart';
 import 'package:tourist_guide/ui/pages/place_details/place_details_page.dart';
 import 'package:tourist_guide/ui/pages/settings/settings_page.dart';
@@ -19,7 +19,7 @@ Route<dynamic> geneateRoute(RouteSettings settings) {
               ));
 
     case favoritePage:
-      return MaterialPageRoute(builder: (context) => const Bookmark());
+      return MaterialPageRoute(builder: (context) => const FavoritePage());
 
     case settingsPage:
       return MaterialPageRoute(builder: (context) => const SettingsPage());
