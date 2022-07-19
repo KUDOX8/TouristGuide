@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
+import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -10,63 +11,21 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  List<PlaceCard> favPlaces = [
-    PlaceCard(PlaceModel(
+  List<PlaceModel> favPlaces = [
+    PlaceModel(
       placeID: 1,
       placeName: "Al-Qara Hill",
       placeType: "",
       numberOfStars: 5,
       imageURL: "assets/images/Alqara.jpg",
-    )),
-    PlaceCard(PlaceModel(
+    ),
+    PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
       placeType: "",
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
-    PlaceCard(PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    )),
+    ),
   ];
   @override
   Widget build(BuildContext context) {
@@ -79,16 +38,9 @@ class _FavoritePageState extends State<FavoritePage> {
             )
           : Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GridView.count(
-                cacheExtent: 9999999999,
-                childAspectRatio: 0.7 / 1,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                scrollDirection: Axis.vertical,
-                crossAxisCount: 2,
-                children: favPlaces,
-              ),
-            ),
+              child: PlaceGenerator(
+                placeList: favPlaces,
+              )),
     );
   }
 }
