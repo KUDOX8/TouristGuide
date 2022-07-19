@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 
-class ShopNotifier with ChangeNotifier {
+class PlaceNotifier with ChangeNotifier {
   List<PlaceModel> _placeList = [];
 
   UnmodifiableListView<PlaceModel> get placeList =>

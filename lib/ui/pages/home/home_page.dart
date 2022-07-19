@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/bottom_nav_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/top_bar.dart';
 import 'package:tourist_guide/ui/pages/search/widgets/search_bar.dart';
+import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class Home extends StatefulWidget {
@@ -80,22 +84,21 @@ class _HomeState extends State<Home> {
     }
   }
 
-  // List<PlaceCard> all = [];
+  List<PlaceCard> all = [];
 
-  // @override
-  // void initState() {
-  //   CafeNotifier _cafeNotifier =
-  //       Provider.of<CafeNotifier>(context, listen: false);
-  //
+  @override
+  void initState() {
+    PlaceNotifier _placeNotifier =
+        Provider.of<PlaceNotifier>(context, listen: false);
 
-  //   DatabaseService().getPlaces(_cafeNotifier, 'cafes');
+    DatabaseService().getPlaces(_placeNotifier, 'places');
 
-  //   for (var placeModel in _cafeNotifier.placeList) {
-  //     cafes.add(PlaceCard(placeModel));
-  //   }
+    for (var placeModel in _placeNotifier.placeList) {
+      all.add(PlaceCard(placeModel));
+    }
 
-  //   super.initState();
-  // }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

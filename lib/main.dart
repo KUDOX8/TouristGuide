@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tourist_guide/core/notifiers/cafe_notifier.dart';
-import 'package:tourist_guide/core/notifiers/restaurant_notifier.dart';
-import 'package:tourist_guide/core/notifiers/shop_notifier.dart';
+import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/utils/router.dart' as router;
 
@@ -21,9 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(value: CafeNotifier()),
-        ChangeNotifierProvider.value(value: RestaurantNotifier()),
-        ChangeNotifierProvider.value(value: ShopNotifier()),
+        ChangeNotifierProvider.value(value: PlaceNotifier()),
       ],
       child: const MaterialApp(
         onGenerateRoute: router.geneateRoute,
