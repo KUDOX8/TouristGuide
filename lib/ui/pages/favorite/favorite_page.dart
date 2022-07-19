@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
-import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class FavoritePage extends StatefulWidget {
