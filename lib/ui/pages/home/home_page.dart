@@ -53,15 +53,29 @@ class _HomeState extends State<Home> {
     ),
   ];
 
-  void _editList(String type, bool reset) {
-    if (reset) _shownPlaceCards = placeModelList;
-    setState(() {
-      if (type != "All") {
-        _shownPlaceCards = _shownPlaceCards
-            .where((placeCard) => placeCard.placeType.contains(type))
-            .toList();
-      }
-    });
+  void _editList(String type, bool reset, bool isSelected) {
+    if (reset) {
+      _shownPlaceCards = placeModelList;
+      setState(() {
+        if (type != "All") {
+          _shownPlaceCards = _shownPlaceCards
+              .where((placeCard) => placeCard.placeType.contains(type))
+              .toList();
+        }
+      });
+    } else {
+      setState(() {
+        if (isSelected) {
+          _shownPlaceCards += placeModelList
+              .where((placeCard) => placeCard.placeType.contains(type))
+              .toList();
+        } else {
+          _shownPlaceCards
+              .removeWhere((place) => place.placeType.contains(type));
+        }
+      });
+    }
+    print(_shownPlaceCards);
   }
 
   // List<PlaceCard> all = [];

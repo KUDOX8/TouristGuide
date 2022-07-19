@@ -15,14 +15,16 @@ class _FavoritePageState extends State<FavoritePage> {
     PlaceModel(
       placeID: 1,
       placeName: "Al-Qara Hill",
-      placeType: "",
+      placeType: [""],
       numberOfStars: 5,
       imageURL: "assets/images/Alqara.jpg",
     ),
     PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
-      placeType: "",
+      placeType: [
+        "",
+      ],
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
     ),

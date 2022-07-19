@@ -50,17 +50,20 @@ class _CategoriesBarState extends State<CategoriesBar> {
                     }
                     typeData['isSelected'] = true;
                   });
-                  widget.editList(typeData['text'], true);
+                  widget.editList(
+                      typeData['text'], true, typeData['isSelected']);
                 },
                 onLongPress: () {
                   if (typeData['text'] != "All") {
                     setState(
                       () {
                         type[0]['isSelected'] = false;
-                        typeData['isSelected'] = true;
+                        typeData['isSelected'] = !typeData['isSelected'];
                       },
                     );
-                    widget.editList(typeData['text'], false);
+
+                    widget.editList(
+                        typeData['text'], false, typeData['isSelected']);
                   }
                   // call here
                 },
