@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
 class CategoriesBar extends StatefulWidget {
-  const CategoriesBar({Key? key}) : super(key: key);
+  final Function editList;
+  const CategoriesBar(this.editList, {Key? key}) : super(key: key);
 
   @override
   State<CategoriesBar> createState() => _CategoriesBarState();
@@ -12,6 +13,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
   List<Map> type = [
     {'text': 'All', 'isSelected': true},
     {'text': 'Restaurant', 'isSelected': false},
+    {'text': 'Park', 'isSelected': false},
     {'text': 'Cafe', 'isSelected': false},
     {'text': 'Historical', 'isSelected': false},
     {'text': 'Shops', 'isSelected': false},
@@ -48,6 +50,19 @@ class _CategoriesBarState extends State<CategoriesBar> {
                     }
                     typeData['isSelected'] = true;
                   });
+                  widget.editList(typeData['text'], true);
+                },
+                onLongPress: () {
+                  if (typeData['text'] != "All") {
+                    setState(
+                      () {
+                        type[0]['isSelected'] = false;
+                        typeData['isSelected'] = true;
+                      },
+                    );
+                    widget.editList(typeData['text'], false);
+                  }
+                  // call here
                 },
               ),
             ),

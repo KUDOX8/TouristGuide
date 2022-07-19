@@ -1,7 +1,7 @@
 class PlaceModel {
   final int placeID;
   final String placeName;
-  final String placeType;
+  final List<String> placeType;
   final double numberOfStars;
   final String imageURL;
 
@@ -25,7 +25,7 @@ class DetailedPlaceModel extends PlaceModel {
     required this.showImagesURL,
     required int placeID,
     required String placeName,
-    required String placeType,
+    required List<String> placeType,
     required double numberOfStars,
     required String imageURL,
   }) : super(
