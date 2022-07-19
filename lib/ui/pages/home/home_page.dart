@@ -24,84 +24,70 @@ class _HomeState extends State<Home> {
     PlaceModel(
       placeID: 1,
       placeName: "Al-Qara Hill",
-      placeType: "",
+      placeType: ["Historical"],
       numberOfStars: 5,
       imageURL: "assets/images/Alqara.jpg",
     ),
     PlaceModel(
       placeID: 2,
       placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-    PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-    PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-    PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-    PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-    PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-    PlaceModel(
-      placeID: 2,
-      placeName: "Jawatha Park",
-      placeType: "",
+      placeType: ["Park"],
       numberOfStars: 4.5,
       imageURL: "assets/images/Jawatha_Park.jpg",
     ),
   ];
-  List<PlaceCard> all = [];
-  List<PlaceCard> cafes = [];
-  List<PlaceCard> restaurants = [];
+  List<PlaceModel> _shownPlaceCards = [
+    PlaceModel(
+      placeID: 1,
+      placeName: "Al-Qara Hill",
+      placeType: ["Historical"],
+      numberOfStars: 5,
+      imageURL: "assets/images/Alqara.jpg",
+    ),
+    PlaceModel(
+      placeID: 2,
+      placeName: "Jawatha Park",
+      placeType: ["Park"],
+      numberOfStars: 4.5,
+      imageURL: "assets/images/Jawatha_Park.jpg",
+    ),
+  ];
 
-  @override
-  void initState() {
-    CafeNotifier _cafeNotifier =
-        Provider.of<CafeNotifier>(context, listen: false);
-    RestaurantNotifier _restaurantNotifier =
-        Provider.of<RestaurantNotifier>(context, listen: false);
-
-    DatabaseService().getPlaces(_cafeNotifier, 'cafes');
-    DatabaseService().getPlaces(_restaurantNotifier, 'restaurants');
-
-    for (var placeModel in _cafeNotifier.placeList) {
-      cafes.add(PlaceCard(placeModel));
-    }
-    for (var placeModel in _restaurantNotifier.placeList) {
-      restaurants.add(PlaceCard(placeModel));
-    }
-    all.addAll(cafes);
-    all.addAll(restaurants);
-    super.initState();
+  void _editList(String type, bool reset) {
+    if (reset) _shownPlaceCards = placeModelList;
+    setState(() {
+      if (type != "All") {
+        _shownPlaceCards = _shownPlaceCards
+            .where((placeCard) => placeCard.placeType.contains(type))
+            .toList();
+      }
+    });
   }
+
+  // List<PlaceCard> all = [];
+  // List<PlaceCard> cafes = [];
+  // List<PlaceCard> restaurants = [];
+
+  // @override
+  // void initState() {
+  //   CafeNotifier _cafeNotifier =
+  //       Provider.of<CafeNotifier>(context, listen: false);
+  //   RestaurantNotifier _restaurantNotifier =
+  //       Provider.of<RestaurantNotifier>(context, listen: false);
+
+  //   DatabaseService().getPlaces(_cafeNotifier, 'cafes');
+  //   DatabaseService().getPlaces(_restaurantNotifier, 'restaurants');
+
+  //   for (var placeModel in _cafeNotifier.placeList) {
+  //     cafes.add(PlaceCard(placeModel));
+  //   }
+  //   for (var placeModel in _restaurantNotifier.placeList) {
+  //     restaurants.add(PlaceCard(placeModel));
+  //   }
+  //   all.addAll(cafes);
+  //   all.addAll(restaurants);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -121,8 +107,8 @@ class _HomeState extends State<Home> {
           const SizedBox(
             height: 25,
           ),
-          const CategoriesBar(),
-          Expanded(child: PlaceGenerator(placeList: placeModelList))
+          CategoriesBar(_editList),
+          Expanded(child: PlaceGenerator(placeList: _shownPlaceCards))
         ]),
       ),
       bottomNavigationBar: const BottomNav(),
