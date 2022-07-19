@@ -10,9 +10,14 @@ const Color transparent = Colors.transparent;
 const Color selectedCategory = Color.fromARGB(185, 235, 238, 243);
 
 const Color priceColor = Color.fromRGBO(0, 230, 118, 1);
+Color? goButtonColor = Colors.blue[800];
 
 const Color lightBlack = Color.fromRGBO(77, 86, 82, 1.0);
 const Color lightGrey = Color.fromARGB(132, 234, 241, 241);
+
+// Text Styles
+TextStyle notSelectedStyle = const TextStyle(color: grey);
+TextStyle selectedStyle = const TextStyle(color: black);
 
 //Routes
 const String homePage = '/';

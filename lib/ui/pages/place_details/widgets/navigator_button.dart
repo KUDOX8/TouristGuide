@@ -12,7 +12,7 @@ class NavigationButton extends StatelessWidget {
           style: TextButton.styleFrom(
               fixedSize: const Size.fromWidth(200),
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-              backgroundColor: Colors.blue[800]),
+              backgroundColor: goButtonColor),
           onPressed: () {},
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/notifiers/cafe_notifier.dart';
 import 'package:tourist_guide/core/notifiers/restaurant_notifier.dart';
 import 'package:tourist_guide/core/notifiers/shop_notifier.dart';
-import 'package:tourist_guide/ui/pages/home/home_page.dart';
-import 'package:tourist_guide/ui/pages/place_details/place_details_page.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/utils/router.dart' as router;
 

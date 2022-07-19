@@ -18,8 +18,6 @@ class _CategoriesBarState extends State<CategoriesBar> {
     {'text': 'Historical', 'isSelected': false},
     {'text': 'Shops', 'isSelected': false},
   ];
-  TextStyle notSelectedStyle = const TextStyle(color: grey);
-  TextStyle selectedStyle = const TextStyle(color: black);
 
   @override
   Widget build(BuildContext context) {
