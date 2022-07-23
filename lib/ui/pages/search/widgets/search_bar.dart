@@ -14,14 +14,14 @@ class SearchBar extends StatelessWidget {
             context: context,
             delegate: CustomSearchDelegate([
               PlaceModel(
-                placeID: 1,
+                placeID: '1',
                 placeName: "Al-Qara Hill",
                 placeType: [""],
                 numberOfStars: 5,
                 imageURL: "assets/images/Alqara.jpg",
               ),
               PlaceModel(
-                placeID: 2,
+                placeID: '2',
                 placeName: "Jawatha Park",
                 placeType: [""],
                 numberOfStars: 4.5,

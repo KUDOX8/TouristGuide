@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/utils/router.dart' as router;
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: PlaceNotifier()),
+        ChangeNotifierProvider.value(value: FavoritePlacesNotifier()),
       ],
       child: const MaterialApp(
         onGenerateRoute: router.geneateRoute,

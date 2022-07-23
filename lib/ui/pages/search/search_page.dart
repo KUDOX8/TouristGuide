@@ -61,7 +61,9 @@ class CustomSearchDelegate extends SearchDelegate {
           )
         : Padding(
             padding: const EdgeInsets.all(8.0),
-            child: PlaceGenerator(placeList: matchQuery),
+            child: PlaceGenerator(
+              placeList: matchQuery,
+            ),
           );
   }
 }

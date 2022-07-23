@@ -69,7 +69,9 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                     Positioned(
                         top: _screenSize.height * 0.36,
                         right: _screenSize.width * 0.05,
-                        child: const FavoriteButton()),
+                        child: FavoriteButton(
+                          placeID: widget.placeModel.placeID,
+                        )),
                   ],
                 ),
                 const SizedBox(

@@ -37,13 +37,13 @@ class _BottomNavState extends State<BottomNav> {
                   color: isSelected[3] ? black : grey),
               label: ''),
         ],
-        onDestinationSelected: (index) {
+        onDestinationSelected: (index) async {
           Navigator.pushNamed(context, favoritePage);
-          setState(() {
-            _currentIndex = index;
-            isSelected = [false, false, false, false];
-            isSelected[index] = true;
-          });
+
+          _currentIndex = index;
+          isSelected = [false, false, false, false];
+          isSelected[index] = true;
+          setState(() {});
         },
         selectedIndex: _currentIndex,
       ),

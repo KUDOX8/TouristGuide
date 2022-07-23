@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 
 import '../../../utils/constants.dart';
 
 class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({Key? key}) : super(key: key);
+  final String placeID;
+  const FavoriteButton({Key? key, required this.placeID}) : super(key: key);
 
   @override
   State<FavoriteButton> createState() => _FavoriteButtonState();
@@ -14,13 +17,25 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 
   @override
   Widget build(BuildContext context) {
+    FavoritePlacesNotifier _favoriteNotifier =
+        Provider.of<FavoritePlacesNotifier>(context, listen: true);
+
+    isFavorite = _favoriteNotifier.placesID.contains(widget.placeID);
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(40),
       child: InkWell(
         onTap: () {
-          setState(() {
-            isFavorite = !isFavorite;
-          });
+          isFavorite = !isFavorite;
+          if (isFavorite) {
+            _favoriteNotifier.placesID =
+                _favoriteNotifier.placesID + [widget.placeID];
+          } else {
+            _favoriteNotifier.placesID.remove(widget.placeID);
+            _favoriteNotifier.placesID = _favoriteNotifier.placesID;
+          }
+
+          setState(() {});
         },
         child: Container(
           width: 40,

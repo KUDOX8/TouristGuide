@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 
 class DatabaseService {
   final FirebaseFirestore _storeInstance = FirebaseFirestore.instance;
@@ -23,5 +27,18 @@ class DatabaseService {
     }
 
     placeNotifier.placesList = _placeList;
+  }
+
+  void getPlaceIDs(FavoritePlacesNotifier _favoriteNotifier) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    if (pref.containsKey('favorite')) {
+      log('here');
+      pref.setStringList('favorite', []);
+    }
+
+    log('${pref.getKeys()}');
+
+    _favoriteNotifier.placesID = pref.getStringList('favorite')!;
   }
 }

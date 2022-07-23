@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/bottom_nav_bar.dart';
@@ -21,14 +24,14 @@ class _HomeState extends State<Home> {
   // hardcoded places for testing purposes. Will be deleted when we add the database.
   List<PlaceModel> placeModelList = [
     PlaceModel(
-      placeID: 1,
+      placeID: '1',
       placeName: "Al-Qara Hill",
       placeType: ["Historical"],
       numberOfStars: 5,
       imageURL: "assets/images/Alqara.jpg",
     ),
     PlaceModel(
-      placeID: 2,
+      placeID: '2',
       placeName: "Jawatha Park",
       placeType: ["Park"],
       numberOfStars: 4.5,
@@ -37,14 +40,14 @@ class _HomeState extends State<Home> {
   ];
   List<PlaceModel> _shownPlaceCards = [
     PlaceModel(
-      placeID: 1,
+      placeID: '1',
       placeName: "Al-Qara Hill",
       placeType: ["Historical"],
       numberOfStars: 5,
       imageURL: "assets/images/Alqara.jpg",
     ),
     PlaceModel(
-      placeID: 2,
+      placeID: '2',
       placeName: "Jawatha Park",
       placeType: ["Park"],
       numberOfStars: 4.5,
@@ -88,14 +91,19 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    PlaceNotifier _placeNotifier =
-        Provider.of<PlaceNotifier>(context, listen: false);
+    // PlaceNotifier _placeNotifier =
+    //     Provider.of<PlaceNotifier>(context, listen: false);
 
-    DatabaseService().getPlaces(_placeNotifier, 'places');
+    // DatabaseService().getPlaces(_placeNotifier, 'places');
 
-    for (var placeModel in _placeNotifier.placeList) {
-      all.add(PlaceCard(placeModel));
-    }
+    // for (var placeModel in _placeNotifier.placeList) {
+    //   all.add(PlaceCard(placeModel));
+    // }
+
+    FavoritePlacesNotifier _favoriteNotifier =
+        Provider.of<FavoritePlacesNotifier>(context, listen: false);
+
+    DatabaseService().getPlaceIDs(_favoriteNotifier);
 
     super.initState();
   }
@@ -119,7 +127,10 @@ class _HomeState extends State<Home> {
             height: 25,
           ),
           CategoriesBar(_editList),
-          Expanded(child: PlaceGenerator(placeList: _shownPlaceCards))
+          Expanded(
+              child: PlaceGenerator(
+            placeList: _shownPlaceCards,
+          ))
         ]),
       ),
       bottomNavigationBar: const BottomNav(),

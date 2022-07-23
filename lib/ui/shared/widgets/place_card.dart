@@ -67,7 +67,7 @@ class _PlaceCardState extends State<PlaceCard> {
                     ],
                   ),
                 ),
-                const FavoriteButton(),
+                FavoriteButton(placeID: widget.placeModel.placeID),
               ],
             ),
           ],
