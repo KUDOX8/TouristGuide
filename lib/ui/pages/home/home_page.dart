@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
     FavoritePlacesNotifier _favoriteNotifier =
         Provider.of<FavoritePlacesNotifier>(context, listen: false);
 
-    DatabaseService().getPlaceIDs(_favoriteNotifier);
+    DatabaseService().getPlacesID(_favoriteNotifier);
 
     super.initState();
   }

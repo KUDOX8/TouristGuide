@@ -29,16 +29,19 @@ class DatabaseService {
     placeNotifier.placesList = _placeList;
   }
 
-  void getPlaceIDs(FavoritePlacesNotifier _favoriteNotifier) async {
+  void getPlacesID(FavoritePlacesNotifier _favoriteNotifier) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
-    if (pref.containsKey('favorite')) {
-      log('here');
+    if (!pref.containsKey('favorite')) {
       pref.setStringList('favorite', []);
     }
 
-    log('${pref.getKeys()}');
-
     _favoriteNotifier.placesID = pref.getStringList('favorite')!;
+  }
+
+  void setPlacesID(List<String> placesID) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    pref.setStringList('favorite', placesID);
   }
 }

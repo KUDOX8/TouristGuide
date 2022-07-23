@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
+import 'package:tourist_guide/core/services/database_service.dart';
 
 import '../../../utils/constants.dart';
 
@@ -34,6 +36,8 @@ class _FavoriteButtonState extends State<FavoriteButton> {
             _favoriteNotifier.placesID.remove(widget.placeID);
             _favoriteNotifier.placesID = _favoriteNotifier.placesID;
           }
+
+          DatabaseService().setPlacesID(_favoriteNotifier.placesID);
 
           setState(() {});
         },
