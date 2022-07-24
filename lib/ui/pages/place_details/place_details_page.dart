@@ -141,7 +141,7 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                         ),
                       ],
                     ),
-                    const NavigationButton(),
+                    NavigationButton(widget.detailedPlaceModel.url),
                   ],
                 ),
               ],

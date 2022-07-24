@@ -18,6 +18,7 @@ class DetailedPlaceModel extends PlaceModel {
   final int numberOfReviews;
   final double price;
   final String description;
+  final String url;
   final List<String> showImagesURL;
 
   DetailedPlaceModel.fromPlaceModel({
@@ -25,6 +26,7 @@ class DetailedPlaceModel extends PlaceModel {
     required this.numberOfReviews,
     required this.price,
     required this.description,
+    required this.url,
     required this.showImagesURL,
   }) : super(
             placeID: placeModel.placeID,
@@ -37,6 +39,7 @@ class DetailedPlaceModel extends PlaceModel {
     required this.numberOfReviews,
     required this.price,
     required this.description,
+    required this.url,
     required this.showImagesURL,
     required String placeID,
     required String placeName,
