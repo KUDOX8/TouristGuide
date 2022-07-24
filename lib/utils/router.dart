@@ -14,9 +14,17 @@ Route<dynamic> geneateRoute(RouteSettings settings) {
     case placeDetailsPage:
       PlaceModel placeDetailsArgument = settings.arguments as PlaceModel;
       return MaterialPageRoute(
-          builder: (context) => PlaceDetailsPage(
-                placeModel: placeDetailsArgument,
-              ));
+        builder: (context) => PlaceDetailsPage(
+          detailedPlaceModel: DetailedPlaceModel.fromPlaceModel(
+            placeModel: placeDetailsArgument,
+            numberOfReviews: 325,
+            price: 10,
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            showImagesURL: [],
+          ),
+        ),
+      );
 
     case favoritePage:
       return MaterialPageRoute(builder: (context) => const FavoritePage());
