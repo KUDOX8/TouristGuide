@@ -1,7 +1,7 @@
 class PlaceModel {
   final String placeID;
   final String placeName;
-  final List<String> placeType;
+  final List<dynamic> placeType;
   final double numberOfStars;
   final String imageURL;
 
