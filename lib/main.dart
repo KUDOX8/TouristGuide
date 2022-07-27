@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+import 'package:tourist_guide/ui/pages/settings/settings_page.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/utils/router.dart' as router;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(const MaterialApp(home: SettingsPage()));
 }
 
 class MyApp extends StatelessWidget {
