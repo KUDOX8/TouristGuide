@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
+import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
+import 'package:tourist_guide/utils/constants.dart';
 
 import '../../../core/models/translation.dart';
 
@@ -17,25 +17,6 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  List<PlaceModel> placeModels = [
-    PlaceModel(
-      placeID: '1',
-      placeName: "Al-Qara Hill",
-      placeType: [""],
-      numberOfStars: 5,
-      imageURL: "assets/images/Alqara.jpg",
-    ),
-    PlaceModel(
-      placeID: '2',
-      placeName: "Jawatha Park",
-      placeType: [
-        "",
-      ],
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-  ];
-
   List<PlaceModel> _getFavoritePlaces(
       List<String> placesID, List<PlaceModel> placeModels) {
     List<PlaceModel> favPlaces = [];
@@ -52,10 +33,17 @@ class _FavoritePageState extends State<FavoritePage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-              translateEnglishToAnotherLanguage('Favorites', widget.language)),
-          elevation: 0,
-          centerTitle: true),
+
+        title: Text(
+           translateEnglishToAnotherLanguage('Favorites', widget.language),
+          style: titleTextStyle,
+        ),
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: const Color(0x00000000),
+        iconTheme: const IconThemeData(color: black, size: 32),
+      ),
+
       body: _favoriteNotifier.placesID.isEmpty
           ? Center(
               child: Text(
@@ -67,9 +55,11 @@ class _FavoritePageState extends State<FavoritePage> {
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlaceGenerator(
+
                 placeList:
                     _getFavoritePlaces(_favoriteNotifier.placesID, placeModels),
                 language: widget.language,
+
               )),
     );
   }

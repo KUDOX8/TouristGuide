@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';

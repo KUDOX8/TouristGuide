@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/ui/shared/widgets/SelectCards.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+
+import 'package:flutter_switch/flutter_switch.dart';
+import 'package:tourist_guide/ui/shared/widgets/SelectCards.dart';
+import 'package:tourist_guide/utils/constants.dart';
+
 
 class SettingsPage extends StatefulWidget {
   final Languages language;
@@ -29,6 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
     Color _appBarColor = const Color.fromRGBO(36, 41, 46, 1);
     Color _scaffoldBgcolor = Colors.white;
 
+
     bool isEnglish = true;
 
     bool darkSelect = false;
@@ -40,13 +47,16 @@ class _SettingsPageState extends State<SettingsPage> {
       });
     }
 
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+
         title: Center(
             child: Text(
           translateEnglishToAnotherLanguage("Settings", widget.language),
           style: const TextStyle(color: black),
+
         )),
         backgroundColor: Colors.transparent,
       ),
@@ -54,6 +64,7 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -63,6 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     widget.language,
                   ),
                   style: const TextStyle(fontSize: 20),
+
                 ),
                 const SizedBox(
                   height: 20,
@@ -128,6 +140,7 @@ class _SettingsPageState extends State<SettingsPage> {
             const SizedBox(
               height: 40,
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -137,6 +150,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     widget.language,
                   ),
                   style: const TextStyle(fontSize: 20),
+
                 ),
                 const SizedBox(
                   height: 20,
@@ -146,6 +160,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: [
                     SelectCard(
                       text: "Arabic",
+
                       select: !isEnglish,
                       onPressed: changeLanguage,
                     ),
@@ -153,6 +168,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       text: "English",
                       select: isEnglish,
                       onPressed: changeLanguage,
+
                     ),
                   ],
                 ),
