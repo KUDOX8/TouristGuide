@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/ui/pages/favorite/favorite_page.dart';
 import 'package:tourist_guide/ui/pages/home/home_page.dart';
 import 'package:tourist_guide/ui/pages/place_details/place_details_page.dart';
@@ -24,14 +25,18 @@ Route<dynamic> geneateRoute(RouteSettings settings) {
             url: "https://goo.gl/maps/ogqKiZMuvyikpdxVA",
             showImagesURL: [],
           ),
+          language: Languages.arabic,
         ),
       );
 
     case favoritePage:
-      return MaterialPageRoute(builder: (context) => const FavoritePage());
+      return MaterialPageRoute(
+          builder: (context) => const FavoritePage(Languages.arabic));
 
     case settingsPage:
-      return MaterialPageRoute(builder: (context) => const SettingsPage());
+      return MaterialPageRoute(
+        builder: (context) => const SettingsPage(Languages.arabic),
+      );
 
     default:
       return MaterialPageRoute(builder: (context) => const Home());

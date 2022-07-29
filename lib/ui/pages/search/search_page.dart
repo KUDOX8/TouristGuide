@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   late List<PlaceModel> placesList;
-
-  CustomSearchDelegate(this.placesList);
+  final Languages language;
+  CustomSearchDelegate({required this.placesList, required this.language});
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -42,7 +43,10 @@ class CustomSearchDelegate extends SearchDelegate {
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: PlaceGenerator(placeList: matchQuery),
+      child: PlaceGenerator(
+        placeList: matchQuery,
+        language: language,
+      ),
     );
   }
 
@@ -56,13 +60,17 @@ class CustomSearchDelegate extends SearchDelegate {
     }
 
     return matchQuery.isEmpty
-        ? const Center(
-            child: Text('No place to display'),
+        ? Center(
+            child: Text(
+              translateEnglishToAnotherLanguage(
+                  'No place to display', language),
+            ),
           )
         : Padding(
             padding: const EdgeInsets.all(8.0),
             child: PlaceGenerator(
               placeList: matchQuery,
+              language: language,
             ),
           );
   }

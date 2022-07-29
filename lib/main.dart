@@ -12,8 +12,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+
   await DatabaseService().getPlaces(PlaceNotifier());
   FlutterNativeSplash.remove();
+
 
   runApp(const MyApp());
 }

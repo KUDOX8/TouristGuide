@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
@@ -19,8 +20,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   final List<PlaceModel> _all = PlaceNotifier().placeList;
   List<PlaceModel> _shownPlaceCards = PlaceNotifier().placeList;
+
   bool _isAllPrev = true;
   void _editList(String type, bool reset, bool isSelected) {
     if (reset) {
@@ -67,6 +70,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
       color: white,
@@ -74,7 +78,7 @@ class _HomeState extends State<Home> {
         backgroundColor: white,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leading: const TopBar(),
+          leading: const TopBar(pickedLanguage),
           leadingWidth: _screenSize.width,
           actions: const [PopUpMenu()],
           backgroundColor: const Color(0x00000000),
@@ -85,16 +89,17 @@ class _HomeState extends State<Home> {
           const SizedBox(
             height: 50,
           ),
-          const SearchBar(),
+          const SearchBar(pickedLanguage),
           const SizedBox(
             height: 25,
           ),
-          CategoriesBar(_editList),
+          CategoriesBar(pickedLanguage,_editList),
           const SizedBox(
             height: 20,
           ),
-          Expanded(child: PlaceGenerator(placeList: _shownPlaceCards))
+          Expanded(child: PlaceGenerator(placeList: _shownPlaceCards,language: pickedLanguage))
         ]),
+
       ),
     );
   }

@@ -6,8 +6,11 @@ import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
+import '../../../core/models/translation.dart';
+
 class FavoritePage extends StatefulWidget {
-  const FavoritePage({Key? key}) : super(key: key);
+  final Languages language;
+  const FavoritePage(this.language, {Key? key}) : super(key: key);
 
   @override
   State<FavoritePage> createState() => _FavoritePageState();
@@ -30,8 +33,9 @@ class _FavoritePageState extends State<FavoritePage> {
 
     return Scaffold(
       appBar: AppBar(
+
         title: Text(
-          'Favorites',
+           translateEnglishToAnotherLanguage('Favorites', widget.language),
           style: titleTextStyle,
         ),
         elevation: 0,
@@ -39,15 +43,23 @@ class _FavoritePageState extends State<FavoritePage> {
         backgroundColor: const Color(0x00000000),
         iconTheme: const IconThemeData(color: black, size: 32),
       ),
+
       body: _favoriteNotifier.placesID.isEmpty
-          ? const Center(
-              child: Text('Add your favorite places to display it here'),
+          ? Center(
+              child: Text(
+                translateEnglishToAnotherLanguage(
+                    'Add your favorite places to display it here',
+                    widget.language),
+              ),
             )
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlaceGenerator(
-                placeList: _getFavoritePlaces(
-                    _favoriteNotifier.placesID, PlaceNotifier().placeList),
+
+                placeList:
+                    _getFavoritePlaces(_favoriteNotifier.placesID, placeModels),
+                language: widget.language,
+
               )),
     );
   }
