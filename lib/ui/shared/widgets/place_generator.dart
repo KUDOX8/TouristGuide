@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
-import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
 
 class PlaceGenerator extends StatefulWidget {

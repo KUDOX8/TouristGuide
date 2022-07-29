@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
+import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class FavoritePage extends StatefulWidget {
@@ -14,25 +13,6 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-  List<PlaceModel> placeModels = [
-    PlaceModel(
-      placeID: '1',
-      placeName: "Al-Qara Hill",
-      placeType: [""],
-      numberOfStars: 5,
-      imageURL: "assets/images/Alqara.jpg",
-    ),
-    PlaceModel(
-      placeID: '2',
-      placeName: "Jawatha Park",
-      placeType: [
-        "",
-      ],
-      numberOfStars: 4.5,
-      imageURL: "assets/images/Jawatha_Park.jpg",
-    ),
-  ];
-
   List<PlaceModel> _getFavoritePlaces(
       List<String> placesID, List<PlaceModel> placeModels) {
     List<PlaceModel> favPlaces = [];
@@ -57,8 +37,8 @@ class _FavoritePageState extends State<FavoritePage> {
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlaceGenerator(
-                placeList:
-                    _getFavoritePlaces(_favoriteNotifier.placesID, placeModels),
+                placeList: _getFavoritePlaces(
+                    _favoriteNotifier.placesID, PlaceNotifier().placeList),
               )),
     );
   }
