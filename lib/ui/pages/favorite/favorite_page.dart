@@ -4,6 +4,7 @@ import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
+import 'package:tourist_guide/utils/constants.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -29,7 +30,15 @@ class _FavoritePageState extends State<FavoritePage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Favorites'), elevation: 0, centerTitle: true),
+        title: Text(
+          'Favorites',
+          style: titleTextStyle,
+        ),
+        elevation: 0,
+        centerTitle: true,
+        backgroundColor: const Color(0x00000000),
+        iconTheme: const IconThemeData(color: black, size: 32),
+      ),
       body: _favoriteNotifier.placesID.isEmpty
           ? const Center(
               child: Text('Add your favorite places to display it here'),

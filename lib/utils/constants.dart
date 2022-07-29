@@ -19,6 +19,7 @@ const Color lightGrey = Color.fromARGB(132, 234, 241, 241);
 TextStyle notSelectedStyle = const TextStyle(color: grey);
 TextStyle selectedStyle = const TextStyle(color: black);
 TextStyle menuItemTextStyle = const TextStyle(fontSize: 14);
+TextStyle titleTextStyle = const TextStyle(color: black);
 
 // Icons
 Icon exitIcon = const Icon(

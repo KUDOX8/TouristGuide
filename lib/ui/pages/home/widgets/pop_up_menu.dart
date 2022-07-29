@@ -14,7 +14,7 @@ class PopUpMenu extends StatelessWidget {
           child: ListTile(
             leading: favoriteIcon,
             title: Text(
-              'Favorities',
+              'Favorites',
               style: menuItemTextStyle,
             ),
             onTap: () {
