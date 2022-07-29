@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigationButton extends StatelessWidget {
-  const NavigationButton({Key? key}) : super(key: key);
+  final String url;
+
+  const NavigationButton(this.url, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,12 @@ class NavigationButton extends StatelessWidget {
               fixedSize: const Size.fromWidth(200),
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               backgroundColor: goButtonColor),
-          onPressed: () {},
+          onPressed: () async {
+            final uri = Uri.parse(url);
+            if (await launchUrl(uri)) {
+              throw 'Could not launch $uri';
+            }
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
