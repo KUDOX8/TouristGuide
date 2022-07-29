@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
@@ -11,7 +8,6 @@ import 'package:tourist_guide/ui/pages/home/widgets/bottom_nav_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/top_bar.dart';
 import 'package:tourist_guide/ui/pages/search/widgets/search_bar.dart';
-import 'package:tourist_guide/ui/shared/widgets/place_card.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
 class Home extends StatefulWidget {
@@ -78,20 +74,6 @@ class _HomeState extends State<Home> {
             height: 40,
           ),
           const TopBar(),
-          RaisedButton(onPressed: () {
-            DatabaseService().addPlace(
-              DetailedPlaceModel(
-                placeID: '1',
-                placeName: "Al-Qara Hill",
-                placeType: ["Historical"],
-                numberOfStars: 5,
-                imageURL: "assets/images/Alqara.jpg",
-                description: '',
-                numberOfReviews: 100,
-                showImagesURL: [],
-              ),
-            );
-          }),
           const SizedBox(
             height: 50,
           ),
