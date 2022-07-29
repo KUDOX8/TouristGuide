@@ -3,12 +3,12 @@ import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/pages/search/search_page.dart';
 
-import '../../../../core/models/Language.dart';
+import '../../../../core/models/translation.dart';
 
 class SearchBar extends StatelessWidget {
-  final int languageNumber;
+  final Languages language;
 
-  const SearchBar(this.languageNumber, {Key? key}) : super(key: key);
+  const SearchBar(this.language, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,22 +16,25 @@ class SearchBar extends StatelessWidget {
       onTap: () {
         showSearch(
             context: context,
-            delegate: CustomSearchDelegate([
-              PlaceModel(
-                placeID: '1',
-                placeName: "Al-Qara Hill",
-                placeType: [""],
-                numberOfStars: 5,
-                imageURL: "assets/images/Alqara.jpg",
-              ),
-              PlaceModel(
-                placeID: '2',
-                placeName: "Jawatha Park",
-                placeType: [""],
-                numberOfStars: 4.5,
-                imageURL: "assets/images/Jawatha_Park.jpg",
-              ),
-            ]));
+            delegate: CustomSearchDelegate(
+              placesList: [
+                PlaceModel(
+                  placeID: '1',
+                  placeName: "Al-Qara Hill",
+                  placeType: [""],
+                  numberOfStars: 5,
+                  imageURL: "assets/images/Alqara.jpg",
+                ),
+                PlaceModel(
+                  placeID: '2',
+                  placeName: "Jawatha Park",
+                  placeType: [""],
+                  numberOfStars: 4.5,
+                  imageURL: "assets/images/Jawatha_Park.jpg",
+                ),
+              ],
+              language: language,
+            ));
       },
       child: TextField(
         enabled: false,
@@ -43,10 +46,12 @@ class SearchBar extends StatelessWidget {
             size: 30,
           ),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14.0),
-              borderSide: BorderSide.none),
-          labelText: Language.languages["Place"]![languageNumber],
-          hintText: Language.languages["Explore Destinition"]![languageNumber],
+            borderRadius: BorderRadius.circular(14.0),
+            borderSide: BorderSide.none,
+          ),
+          labelText: translateEnglishToAnotherLanguage("Place", language),
+          hintText: translateEnglishToAnotherLanguage(
+              "Explore Destinition", language),
         ),
       ),
     );

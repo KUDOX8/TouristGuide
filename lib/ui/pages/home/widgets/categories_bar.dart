@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/core/models/Language.dart';
+import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
 class CategoriesBar extends StatefulWidget {
-  final int languageNumber;
+  final Languages language;
   final Function editList;
-  const CategoriesBar(this.languageNumber, this.editList, {Key? key})
+  const CategoriesBar(this.language, this.editList, {Key? key})
       : super(key: key);
 
   @override
@@ -14,10 +14,11 @@ class CategoriesBar extends StatefulWidget {
 
 class _CategoriesBarState extends State<CategoriesBar> {
   List<Map<String, Object>> type = [
-    {'text': Language.languages["All"]![widget.languageNumber], 'isSelected': true},
-    {'text': 'Restaurants', 'isSelected': false},
-    {'text': 'Parks', 'isSelected': false},
-    {'text': 'Cafes', 'isSelected': false},
+    // {'text': translation.translate["All"]![widget.languageNumber], 'isSelected': true},
+    {'text': "All", 'isSelected': true},
+    {'text': 'Restaurant', 'isSelected': false},
+    {'text': 'Park', 'isSelected': false},
+    {'text': 'Cafe', 'isSelected': false},
     {'text': 'Historical', 'isSelected': false},
     {'text': 'Shop', 'isSelected': false},
   ];
@@ -40,19 +41,26 @@ class _CategoriesBarState extends State<CategoriesBar> {
               padding: const EdgeInsets.symmetric(vertical: 5),
               color: typeData['isSelected'] ? selectedCategory : transparent,
               child: TextButton(
-                child: Text(typeData['text'],
+                child: Text(
+                    translateEnglishToAnotherLanguage(
+                        typeData['text'], widget.language),
                     style: typeData['isSelected']
                         ? selectedStyle
                         : notSelectedStyle),
                 onPressed: () {
-                  setState(() {
-                    for (var element in type) {
-                      element['isSelected'] = false;
-                    }
-                    typeData['isSelected'] = true;
-                  });
+                  setState(
+                    () {
+                      for (var element in type) {
+                        element['isSelected'] = false;
+                      }
+                      typeData['isSelected'] = true;
+                    },
+                  );
                   widget.editList(
-                      typeData['text'], true, typeData['isSelected']);
+                    typeData['text'],
+                    true,
+                    typeData['isSelected'],
+                  );
                 },
                 onLongPress: () {
                   if (typeData['text'] != "All") {
@@ -62,11 +70,12 @@ class _CategoriesBarState extends State<CategoriesBar> {
                         typeData['isSelected'] = !typeData['isSelected'];
                       },
                     );
-
                     widget.editList(
-                        typeData['text'], false, typeData['isSelected']);
+                      typeData['text'],
+                      false,
+                      typeData['isSelected'],
+                    );
                   }
-                  // call here
                 },
               ),
             ),

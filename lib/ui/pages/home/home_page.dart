@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
@@ -21,6 +22,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Languages pickedLanguage = Languages.arabic;
   // hardcoded places for testing purposes. Will be deleted when we add the database.
   List<PlaceModel> placeModelList = [
     PlaceModel(
@@ -114,24 +116,28 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-        child: Column(children: [
-          const SizedBox(
-            height: 40,
-          ),
-          const TopBar(1),
-          const SizedBox(
-            height: 50,
-          ),
-          const SearchBar(1),
-          const SizedBox(
-            height: 25,
-          ),
-          CategoriesBar(_editList),
-          Expanded(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            TopBar(pickedLanguage),
+            const SizedBox(
+              height: 50,
+            ),
+            SearchBar(pickedLanguage),
+            const SizedBox(
+              height: 25,
+            ),
+            CategoriesBar(pickedLanguage, _editList),
+            Expanded(
               child: PlaceGenerator(
-            placeList: _shownPlaceCards,
-          ))
-        ]),
+                placeList: _shownPlaceCards,
+                language: pickedLanguage,
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: const BottomNav(),
     );

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
+import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/ui/pages/place_details/widgets/navigator_button.dart';
 import 'package:tourist_guide/ui/shared/widgets/favorite_button.dart';
 
 class PlaceDetailsPage extends StatefulWidget {
   final DetailedPlaceModel detailedPlaceModel;
-  const PlaceDetailsPage({Key? key, required this.detailedPlaceModel})
+  final Languages language;
+  const PlaceDetailsPage(
+      {Key? key, required this.detailedPlaceModel, required this.language})
       : super(key: key);
 
   @override
@@ -128,12 +131,13 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Price',
-                          style: TextStyle(fontSize: 10),
+                        Text(
+                          translateEnglishToAnotherLanguage(
+                              'Price', widget.language),
+                          style: const TextStyle(fontSize: 10),
                         ),
                         Text(
-                          '${widget.detailedPlaceModel.price} SAR',
+                          '${widget.detailedPlaceModel.price} ${translateEnglishToAnotherLanguage('SAR', widget.language)}',
                           style: const TextStyle(
                               color: priceColor,
                               fontSize: 20,
@@ -141,7 +145,10 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                         ),
                       ],
                     ),
-                    NavigationButton(widget.detailedPlaceModel.url),
+                    NavigationButton(
+                      url: widget.detailedPlaceModel.url,
+                      language: widget.language,
+                    ),
                   ],
                 ),
               ],
