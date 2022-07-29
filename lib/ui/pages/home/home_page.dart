@@ -6,9 +6,11 @@ import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/bottom_nav_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
+import 'package:tourist_guide/ui/pages/home/widgets/pop_up_menu.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/top_bar.dart';
 import 'package:tourist_guide/ui/pages/search/widgets/search_bar.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
+import 'package:tourist_guide/utils/constants.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -66,14 +68,21 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-        child: Column(children: [
-          const SizedBox(
-            height: 40,
-          ),
-          const TopBar(),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
+      color: white,
+      child: Scaffold(
+        backgroundColor: white,
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: const TopBar(),
+          leadingWidth: _screenSize.width,
+          actions: const [PopUpMenu()],
+          backgroundColor: const Color(0x00000000),
+          iconTheme: const IconThemeData(color: black, size: 32),
+          elevation: 0,
+        ),
+        body: Column(children: [
           const SizedBox(
             height: 50,
           ),
@@ -82,10 +91,12 @@ class _HomeState extends State<Home> {
             height: 25,
           ),
           CategoriesBar(_editList),
+
+
           Expanded(child: PlaceGenerator(placeList: _shownPlaceCards))
+
         ]),
       ),
-      bottomNavigationBar: const BottomNav(),
     );
   }
 }
