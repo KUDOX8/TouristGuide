@@ -2,29 +2,41 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
+import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 
 class DatabaseService {
   final FirebaseFirestore _storeInstance = FirebaseFirestore.instance;
 
-  void getPlaces(dynamic placeNotifier, String collectionName) async {
-    QuerySnapshot cafeSnapshot =
-        await _storeInstance.collection(collectionName).get();
+  void addPlace(DetailedPlaceModel placeModel) {
+    _storeInstance.collection('places').add({
+      'placeName': placeModel.placeName,
+      'placeType': placeModel.placeType,
+      'numberOfStars': placeModel.numberOfStars,
+      'numberOfReviews': placeModel.numberOfReviews,
+      'description': placeModel.description,
+      'imagePath': placeModel.imageURL,
+    });
+  }
+
+  Future getPlaces(PlaceNotifier placeNotifier) async {
+    QuerySnapshot placesSnapshot =
+        await _storeInstance.collection('places').get();
 
     List<PlaceModel> _placeList = [];
 
-    for (var place in cafeSnapshot.docs) {
+    for (var place in placesSnapshot.docs) {
       PlaceModel placeModel = PlaceModel(
         placeName: place.get('placeName'),
         placeType: place.get('placeType'),
-        placeID: place.get('placeID'),
-        imageURL: place.get('imageURL'),
-        numberOfStars: place.get('numberOfStars'),
+        placeID: place.id,
+        imageURL: place.get('imagePath'),
+        numberOfStars: double.parse(place.get('numberOfStars').toString()),
       );
 
       _placeList.add(placeModel);
     }
 
-    placeNotifier.placesList = _placeList;
+    PlaceNotifier().placeList = _placeList;
   }
 
   void getPlacesID(FavoritePlacesNotifier _favoriteNotifier) async {

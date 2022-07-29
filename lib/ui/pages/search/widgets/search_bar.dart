@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/utils/constants.dart';
-import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/pages/search/search_page.dart';
 
 class SearchBar extends StatelessWidget {
@@ -12,22 +12,7 @@ class SearchBar extends StatelessWidget {
       onTap: () {
         showSearch(
             context: context,
-            delegate: CustomSearchDelegate([
-              PlaceModel(
-                placeID: '1',
-                placeName: "Al-Qara Hill",
-                placeType: [""],
-                numberOfStars: 5,
-                imageURL: "assets/images/Alqara.jpg",
-              ),
-              PlaceModel(
-                placeID: '2',
-                placeName: "Jawatha Park",
-                placeType: [""],
-                numberOfStars: 4.5,
-                imageURL: "assets/images/Jawatha_Park.jpg",
-              ),
-            ]));
+            delegate: CustomSearchDelegate(PlaceNotifier().placeList));
       },
       child: TextField(
         enabled: false,
