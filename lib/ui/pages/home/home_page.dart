@@ -118,11 +118,11 @@ class _HomeState extends State<Home> {
           const SizedBox(
             height: 40,
           ),
-          const TopBar(),
+          const TopBar(1),
           const SizedBox(
             height: 50,
           ),
-          const SearchBar(),
+          const SearchBar(1),
           const SizedBox(
             height: 25,
           ),

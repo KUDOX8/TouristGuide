@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/core/models/Language.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
 class CategoriesBar extends StatefulWidget {
+  final int languageNumber;
   final Function editList;
-  const CategoriesBar(this.editList, {Key? key}) : super(key: key);
+  const CategoriesBar(this.languageNumber, this.editList, {Key? key})
+      : super(key: key);
 
   @override
   State<CategoriesBar> createState() => _CategoriesBarState();
 }
 
 class _CategoriesBarState extends State<CategoriesBar> {
-  List<Map> type = [
-    {'text': 'All', 'isSelected': true},
-    {'text': 'Restaurant', 'isSelected': false},
-    {'text': 'Park', 'isSelected': false},
-    {'text': 'Cafe', 'isSelected': false},
+  List<Map<String, Object>> type = [
+    {'text': Language.languages["All"]![widget.languageNumber], 'isSelected': true},
+    {'text': 'Restaurants', 'isSelected': false},
+    {'text': 'Parks', 'isSelected': false},
+    {'text': 'Cafes', 'isSelected': false},
     {'text': 'Historical', 'isSelected': false},
-    {'text': 'Shops', 'isSelected': false},
+    {'text': 'Shop', 'isSelected': false},
   ];
 
   @override

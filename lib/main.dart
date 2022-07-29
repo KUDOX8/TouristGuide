@@ -10,7 +10,7 @@ import 'package:tourist_guide/utils/router.dart' as router;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MaterialApp(home: SettingsPage()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

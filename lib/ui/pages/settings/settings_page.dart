@@ -3,7 +3,6 @@ import 'package:tourist_guide/ui/shared/widgets/SelectCards.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
-
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
@@ -12,8 +11,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-
-
   @override
   Widget build(BuildContext context) {
     bool status1 = false;
@@ -30,27 +27,41 @@ class _SettingsPageState extends State<SettingsPage> {
     Color _appBarColor = const Color.fromRGBO(36, 41, 46, 1);
     Color _scaffoldBgcolor = Colors.white;
 
-    bool engSelect=true;
-    bool arabSelect=false;
+    bool isEnglish = true;
 
-    bool darkSelect=false;
-    bool lightSelect=true;
+    bool darkSelect = false;
+    bool lightSelect = true;
+
+    void changeLanguage() {
+      setState(() {
+        isEnglish = !isEnglish;
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: const Center(child: Text("Settings", style: TextStyle(color: black),)),
+        title: const Center(
+            child: Text(
+          "Settings",
+          style: TextStyle(color: black),
+        )),
         backgroundColor: Colors.transparent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          children:  [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Text("Appearance", style: TextStyle(fontSize: 20),),
-                const SizedBox(height: 20,),
+                const Text(
+                  "Appearance",
+                  style: TextStyle(fontSize: 20),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -98,7 +109,6 @@ class _SettingsPageState extends State<SettingsPage> {
                         });
                       },
                     ),
-
                   ],
                 ),
                 // Row(
@@ -110,21 +120,34 @@ class _SettingsPageState extends State<SettingsPage> {
                 // ),
               ],
             ),
-            const SizedBox(height: 40,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            const SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Language", style: TextStyle(fontSize: 20),),
-                const SizedBox(height: 20,),
+                const Text(
+                  "Language",
+                  style: TextStyle(fontSize: 20),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children:  [
-                    SelectCard(text: "Arabic",select: arabSelect, onPressed: () {  },),
-                    SelectCard(text: "English",select: engSelect, onPressed: () {  },),
+                  children: [
+                    SelectCard(
+                      text: "Arabic",
+                      select: !isEnglish,
+                      onPressed: changeLanguage,
+                    ),
+                    SelectCard(
+                      text: "English",
+                      select: isEnglish,
+                      onPressed: changeLanguage,
+                    ),
                   ],
                 ),
-
-
               ],
             )
           ],

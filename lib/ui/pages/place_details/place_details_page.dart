@@ -38,12 +38,12 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                       height: _screenSize.height * 0.35,
                       width: _screenSize.width,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          image: DecorationImage(
-                            image:
-                                AssetImage(widget.detailedPlaceModel.imageURL),
-                            fit: BoxFit.cover,
-                          )),
+                        borderRadius: BorderRadius.circular(10.0),
+                        image: DecorationImage(
+                          image: AssetImage(widget.detailedPlaceModel.imageURL),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                     Positioned(
                       top: _screenSize.height * 0.50 / 10,
