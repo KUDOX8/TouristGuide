@@ -9,6 +9,8 @@ class TopBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        // const HamburgerMenu(),
+
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -23,7 +25,6 @@ class TopBar extends StatelessWidget {
             )
           ],
         ),
-        Image.asset('assets/images/AlAhsa_logo.png', height: 70),
       ],
     );
   }

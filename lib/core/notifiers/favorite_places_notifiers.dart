@@ -1,6 +1,3 @@
-import 'dart:collection';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 class FavoritePlacesNotifier with ChangeNotifier {
