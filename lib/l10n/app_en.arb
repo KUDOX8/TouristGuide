@@ -1,0 +1,99 @@
+{
+    "language": "English",
+    "@language":{
+        "description": "The current Language"
+    },
+    
+    "explore": "Explore",
+    "@explore":{
+        "description": "Explore"
+    },
+
+    "alahsa": "Al-Ahsa",
+    "@alahsa":{
+        "description": "city name"
+    },
+
+    "appearance": "Appearance",
+    "@appearance":{
+        "description": "Appearance"
+    },
+
+    "place": "Place",
+    "@place":{
+        "description": "Place"
+    },
+
+    "exploreDestinition": "Explore Destinition",
+    "@exploreDestinition":{
+        "description": "Explore Destinition"
+    },
+
+    "all": "All",
+    "@all":{
+        "description": "all"
+    },
+
+    "restaurant": "Restaurant",
+    "@restaurant":{
+        "description": "Restaurant"
+    },
+
+    "park": "Park",
+    "@park":{
+        "description": "Park"
+    },
+
+    "cafe": "Cafe",
+    "@cafe":{
+        "description": "Cafe"
+    },
+
+    "historical": "Historical",
+    "@historical":{
+        "description": "Historical"
+    },
+
+     "shop": "Shop",
+    "@shop":{
+        "description": "Shop"
+    },
+     "favorite": "Favorite",
+    "@favorite":{
+        "description": "Favorite"
+    },
+     "addFavoritePlaces": "Add your favorite places to display it here",
+    "@addFavoritePlaces":{
+        "description": "Add your favorite places to display it here"
+    },
+     "price": "Price",
+    "@Price":{
+        "description": "Price"
+    },
+     "sar": "SAR",
+    "@sar":{
+        "description": "curency"
+    },
+     "goNow": "Go Now!",
+    "@goNow":{
+        "description": "Go Now!"
+    },
+     "noPlaceToDisplay": "No place to display",
+    "@noPlaceToDisplay":{
+        "description": "No place to display"
+    },
+     "settings": "Settings",
+    "@settings":{
+        "description": "Settings"
+    },
+     "language": "Language",
+    "@language":{
+        "description": "Language"
+    },
+     "exit": "Exit",
+    "@exit":{
+        "description": "Exit"
+    }
+    
+
+}

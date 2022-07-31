@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/ui/pages/search/search_page.dart';
 
-import '../../../../core/models/translation.dart';
-
 class SearchBar extends StatelessWidget {
-  final Languages language;
-
-  const SearchBar(this.language, {Key? key}) : super(key: key);
+  const SearchBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +13,8 @@ class SearchBar extends StatelessWidget {
       onTap: () {
         showSearch(
             context: context,
-
-            delegate: CustomSearchDelegate(PlaceNotifier().placeList,language: language));
-
+            delegate:
+                CustomSearchDelegate(placesList: PlaceNotifier().placeList));
       },
       child: TextField(
         enabled: false,
@@ -33,9 +29,8 @@ class SearchBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(14.0),
             borderSide: BorderSide.none,
           ),
-          labelText: translateEnglishToAnotherLanguage("Place", language),
-          hintText: translateEnglishToAnotherLanguage(
-              "Explore Destinition", language),
+          labelText: context.loc.place,
+          hintText: context.loc.exploreDestinition,
         ),
       ),
     );

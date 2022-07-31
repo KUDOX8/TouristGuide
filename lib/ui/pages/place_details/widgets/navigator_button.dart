@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/models/translation.dart';
-
 class NavigationButton extends StatelessWidget {
   final String url;
-  final Languages language;
-  const NavigationButton({required this.url, required this.language, Key? key})
-      : super(key: key);
+
+  const NavigationButton({required this.url, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,7 @@ class NavigationButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                translateEnglishToAnotherLanguage('Go Now!', language),
+                context.loc.goNow,
                 style: const TextStyle(color: white),
               ),
               const SizedBox(

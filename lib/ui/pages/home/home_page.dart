@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tourist_guide/core/models/translation.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
@@ -20,7 +19,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   final List<PlaceModel> _all = PlaceNotifier().placeList;
   List<PlaceModel> _shownPlaceCards = PlaceNotifier().placeList;
 
@@ -71,35 +69,32 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-      color: white,
-      child: Scaffold(
-        backgroundColor: white,
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          leading: const TopBar(pickedLanguage),
-          leadingWidth: _screenSize.width,
-          actions: const [PopUpMenu()],
-          backgroundColor: const Color(0x00000000),
-          iconTheme: const IconThemeData(color: black, size: 32),
-          elevation: 0,
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
+        color: white,
+        child: Scaffold(
+          backgroundColor: white,
+          resizeToAvoidBottomInset: false,
+          body: Column(children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [TopBar(), PopUpMenu()],
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            const SearchBar(),
+            const SizedBox(
+              height: 25,
+            ),
+            CategoriesBar(_editList),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(child: PlaceGenerator(placeList: _shownPlaceCards))
+          ]),
         ),
-        body: Column(children: [
-          const SizedBox(
-            height: 50,
-          ),
-          const SearchBar(pickedLanguage),
-          const SizedBox(
-            height: 25,
-          ),
-          CategoriesBar(pickedLanguage,_editList),
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(child: PlaceGenerator(placeList: _shownPlaceCards,language: pickedLanguage))
-        ]),
-
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
 class PopUpMenu extends StatelessWidget {
@@ -14,7 +15,7 @@ class PopUpMenu extends StatelessWidget {
           child: ListTile(
             leading: favoriteIcon,
             title: Text(
-              'Favorites',
+              context.loc.favorite,
               style: menuItemTextStyle,
             ),
             onTap: () {
@@ -28,7 +29,7 @@ class PopUpMenu extends StatelessWidget {
           child: ListTile(
             leading: settingsIcon,
             title: Text(
-              'Settings',
+              context.loc.settings,
               style: menuItemTextStyle,
             ),
             onTap: () {
@@ -41,7 +42,7 @@ class PopUpMenu extends StatelessWidget {
           child: ListTile(
               leading: exitIcon,
               title: Text(
-                'Exit',
+                context.loc.exit,
                 style: menuItemTextStyle,
               ),
               onTap: () {

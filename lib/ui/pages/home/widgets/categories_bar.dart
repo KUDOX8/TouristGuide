@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/core/models/translation.dart';
+import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
 class CategoriesBar extends StatefulWidget {
-  final Languages language;
   final Function editList;
-  const CategoriesBar(this.language, this.editList, {Key? key})
-      : super(key: key);
+  const CategoriesBar(this.editList, {Key? key}) : super(key: key);
 
   @override
   State<CategoriesBar> createState() => _CategoriesBarState();
@@ -14,8 +12,7 @@ class CategoriesBar extends StatefulWidget {
 
 class _CategoriesBarState extends State<CategoriesBar> {
   List<Map<String, Object>> type = [
-    // {'text': translation.translate["All"]![widget.languageNumber], 'isSelected': true},
-    {'text': "All", 'isSelected': true},
+    {'text': 'All', 'isSelected': true},
     {'text': 'Restaurant', 'isSelected': false},
     {'text': 'Park', 'isSelected': false},
     {'text': 'Cafe', 'isSelected': false},
@@ -25,8 +22,17 @@ class _CategoriesBarState extends State<CategoriesBar> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> names = [
+      context.loc.all,
+      context.loc.restaurant,
+      context.loc.park,
+      context.loc.cafe,
+      context.loc.historical,
+      context.loc.shop
+    ];
+
     return SizedBox(
-      height: 40,
+      height: 50,
       child: ListView.separated(
         separatorBuilder: (context, index) => const SizedBox(
           width: 25,
@@ -41,9 +47,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
               padding: const EdgeInsets.symmetric(vertical: 5),
               color: typeData['isSelected'] ? selectedCategory : transparent,
               child: TextButton(
-                child: Text(
-                    translateEnglishToAnotherLanguage(
-                        typeData['text'], widget.language),
+                child: Text(names[index],
                     style: typeData['isSelected']
                         ? selectedStyle
                         : notSelectedStyle),

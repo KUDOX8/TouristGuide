@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
-import '../../../../core/models/translation.dart';
-
 class TopBar extends StatelessWidget {
-  final Languages language;
-  const TopBar(this.language, {Key? key}) : super(key: key);
+  const TopBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +16,11 @@ class TopBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              translateEnglishToAnotherLanguage('Explore', language),
+              context.loc.explore,
               style: TextStyle(fontSize: 10, color: Colors.grey[800]),
             ),
             Text(
-              translateEnglishToAnotherLanguage('Al-Ahsa', language),
+              context.loc.alahsa,
               style: const TextStyle(
                   fontSize: 20, color: black, fontWeight: FontWeight.bold),
             )
