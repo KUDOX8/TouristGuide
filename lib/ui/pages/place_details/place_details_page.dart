@@ -119,8 +119,12 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                     height: 20,
                   ),
                   Row(
-                    children: const [
-                      Text('Hours: open'),
+                    children: [
+                      const Text('Hours:'),
+                      Text(
+                        ' OPEN',
+                        style: openPlaceStyle,
+                      ),
                     ],
                   ),
                   const SizedBox(

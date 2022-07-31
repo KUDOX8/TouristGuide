@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tourist_guide/core/notifiers/theme_notifier.dart';
 import 'package:tourist_guide/l10n/localization.dart';
 
 import 'package:tourist_guide/ui/shared/widgets/SelectCards.dart';
@@ -17,8 +19,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  bool toggleTheme = false;
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
     bool status1 = false;
     bool status2 = true;
     bool status3 = false;
@@ -35,7 +39,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
     bool isEnglish = true;
 
-    bool darkSelect = false;
     bool lightSelect = true;
 
     void changeLanguage() {
@@ -100,18 +103,27 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                       onToggle: (val) {
                         setState(() {
-                          status7 = val;
-
-                          if (val) {
-                            _textColor = Colors.white;
-                            _appBarColor = const Color.fromRGBO(22, 27, 34, 1);
-                            _scaffoldBgcolor = const Color(0xFF0D1117);
-                          } else {
-                            _textColor = Colors.black;
-                            _appBarColor = const Color.fromRGBO(36, 41, 46, 1);
-                            _scaffoldBgcolor = Colors.white;
-                          }
+                          toggleTheme = !toggleTheme;
                         });
+                        // setState(() {
+                        //   status7 = val;
+
+                        //   if (val) {
+                        //     _textColor = Colors.white;
+                        //     _appBarColor = const Color.fromRGBO(22, 27, 34, 1);
+                        //     _scaffoldBgcolor = const Color(0xFF0D1117);
+                        //   } else {
+                        //     _textColor = Colors.black;
+                        //     _appBarColor = const Color.fromRGBO(36, 41, 46, 1);
+                        //     _scaffoldBgcolor = Colors.white;
+                        //   }
+                        // });
+
+                        final notifier =
+                            Provider.of<ThemeNotifier>(context, listen: false);
+                        print(toggleTheme);
+
+                        notifier.toggleTheme(toggleTheme);
                       },
                     ),
                   ],

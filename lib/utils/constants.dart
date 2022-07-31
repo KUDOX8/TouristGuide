@@ -14,12 +14,14 @@ Color? goButtonColor = Colors.blue[800];
 
 const Color lightBlack = Color.fromRGBO(77, 86, 82, 1.0);
 const Color lightGrey = Color.fromARGB(132, 234, 241, 241);
+Color darkBackgroundColor = Colors.grey.shade900;
 
 // Text Styles
 TextStyle notSelectedStyle = const TextStyle(color: grey);
 TextStyle selectedStyle = const TextStyle(color: black);
 TextStyle menuItemTextStyle = const TextStyle(fontSize: 14);
 TextStyle titleTextStyle = const TextStyle(color: black);
+TextStyle openPlaceStyle = TextStyle(color: Color.fromARGB(255, 37, 223, 49));
 
 // Icons
 Icon exitIcon = const Icon(

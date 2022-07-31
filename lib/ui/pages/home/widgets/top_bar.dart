@@ -7,25 +7,17 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // const HamburgerMenu(),
-
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.loc.explore,
-              style: TextStyle(fontSize: 10, color: Colors.grey[800]),
-            ),
-            Text(
-              context.loc.alahsa,
-              style: const TextStyle(
-                  fontSize: 20, color: black, fontWeight: FontWeight.bold),
-            )
-          ],
+        Text(
+          context.loc.explore,
+          style: TextStyle(fontSize: 10, color: Colors.grey[400]),
         ),
+        Text(
+          context.loc.alahsa,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        )
       ],
     );
   }

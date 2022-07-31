@@ -21,15 +21,17 @@ class SearchBar extends StatelessWidget {
         decoration: InputDecoration(
           filled: true,
           fillColor: lightGrey,
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             Icons.search_rounded,
             size: 30,
+            color: Theme.of(context).iconTheme.color,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14.0),
             borderSide: BorderSide.none,
           ),
           labelText: context.loc.place,
+          labelStyle: TextStyle(color: Theme.of(context).hintColor),
           hintText: context.loc.exploreDestinition,
         ),
       ),
