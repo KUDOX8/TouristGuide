@@ -43,6 +43,11 @@ class _SettingsPageState extends State<SettingsPage> {
         isEnglish = !isEnglish;
       });
     }
+    void changeAppearance() {
+      setState(() {
+        lightSelect = !lightSelect;
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -56,108 +61,23 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  context.loc.appearance,
-                  style: const TextStyle(fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    FlutterSwitch(
-                      width: 100.0,
-                      height: 55.0,
-                      toggleSize: 45.0,
-                      value: status7,
-                      borderRadius: 30.0,
-                      padding: 2.0,
-                      activeToggleColor: const Color(0xFF6E40C9),
-                      inactiveToggleColor: const Color(0xFF2F363D),
-                      activeSwitchBorder: Border.all(
-                        color: const Color(0xFF3C1E70),
-                        width: 6.0,
-                      ),
-                      inactiveSwitchBorder: Border.all(
-                        color: const Color(0xFFD1D5DA),
-                        width: 6.0,
-                      ),
-                      activeColor: const Color(0xFF271052),
-                      inactiveColor: Colors.white,
-                      activeIcon: const Icon(
-                        Icons.nightlight_round,
-                        color: Color(0xFFF8E3A1),
-                      ),
-                      inactiveIcon: const Icon(
-                        Icons.wb_sunny,
-                        color: Color(0xFFFFDF5D),
-                      ),
-                      onToggle: (val) {
-                        setState(() {
-                          status7 = val;
-
-                          if (val) {
-                            _textColor = Colors.white;
-                            _appBarColor = const Color.fromRGBO(22, 27, 34, 1);
-                            _scaffoldBgcolor = const Color(0xFF0D1117);
-                          } else {
-                            _textColor = Colors.black;
-                            _appBarColor = const Color.fromRGBO(36, 41, 46, 1);
-                            _scaffoldBgcolor = Colors.white;
-                          }
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //   children:  [
-                //     SelectCard(text: "Light",select: lightSelect, onPressed: () {  },),
-                //     SelectCard(text: "Dark",select: darkSelect, onPressed: () {  },),
-                //   ],
-                // ),
-              ],
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  context.loc.language,
-                  style: const TextStyle(fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SelectCard(
-                      text: "Arabic",
-                      select: !isEnglish,
-                      onPressed: changeLanguage,
-                    ),
-                    SelectCard(
-                      text: "English",
-                      select: isEnglish,
-                      onPressed: changeLanguage,
-                    ),
-                  ],
-                ),
-              ],
-            )
+        child: Column(children:  [
+          ExpansionTile(title: const Text("Appearance"),
+            children: [
+            ListTile(title: const Text("Dark"),selected:!lightSelect,onTap: () => changeAppearance,),
+            ListTile(title: const Text("Light"),selected: lightSelect,onTap: ()=> changeAppearance,),
           ],
-        ),
+          ),
+          ExpansionTile(title: const Text("Language"),
+            children: [
+            ListTile(title: const Text("العربية"),selected:!isEnglish,onTap: () => changeLanguage,),
+            ListTile(title: const Text("Light"),selected: lightSelect,onTap: ()=> changeLanguage,),
+          ],
+          ),
+        ],)
       ),
     );
   }
+
+
 }
