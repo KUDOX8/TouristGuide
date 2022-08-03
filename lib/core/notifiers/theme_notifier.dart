@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:tourist_guide/utils/constants.dart';
+
+class ThemeNotifier with ChangeNotifier {
+  ThemeMode themeMode = ThemeMode.light;
+
+  bool get isDarkMode => themeMode == ThemeMode.dark;
+
+  void toggleTheme(bool isOn) {
+    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+  }
+}
+
+class MyTheme {
+  static final darkTheme = ThemeData(
+    scaffoldBackgroundColor: darkBackgroundColor,
+    primaryColor: white,
+    colorScheme: const ColorScheme.dark(),
+    iconTheme: const IconThemeData(
+      color: white,
+    ),
+    appBarTheme: const AppBarTheme(color: white),
+    hintColor: white,
+  );
+
+  static final lighTheme = ThemeData(
+      scaffoldBackgroundColor: white,
+      primaryColor: lightGrey,
+      colorScheme: const ColorScheme.light(),
+      iconTheme: const IconThemeData(color: grey),
+      appBarTheme: const AppBarTheme(color: black),
+      hintColor: grey);
+}

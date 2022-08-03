@@ -17,16 +17,21 @@ const Color priceColor = Color.fromRGBO(0, 230, 118, 1);
 Color? goButtonColor = Colors.blue[800];
 const Color lightBlack = Color.fromRGBO(77, 86, 82, 1.0);
 const Color lightGrey = Color.fromARGB(132, 234, 241, 241);
+
 const Color lightOrange = Color(0xFFFEF0E5);
 const Color lightPurple = Color(0xFFF7EAFF);
 const Color lightCyan = Color(0xFFE4F7FF);
 const Color lightPink = Color(0xFFFBE5E8);
+
+Color darkBackgroundColor = Colors.grey.shade900;
+
 
 // Text Styles
 TextStyle notSelectedStyle = const TextStyle(color: grey);
 TextStyle selectedStyle = const TextStyle(color: black);
 TextStyle menuItemTextStyle = const TextStyle(fontSize: 14);
 TextStyle titleTextStyle = const TextStyle(color: black);
+TextStyle openPlaceStyle = TextStyle(color: Color.fromARGB(255, 37, 223, 49));
 
 // Icons
 Icon exitIcon = const Icon(

@@ -4,6 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+import 'package:tourist_guide/core/notifiers/theme_notifier.dart';
 import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/l10n/l10n.dart';
 import 'package:tourist_guide/utils/constants.dart';
@@ -30,13 +31,23 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: PlaceNotifier()),
         ChangeNotifierProvider.value(value: FavoritePlacesNotifier()),
+        ChangeNotifierProvider.value(
+          value: ThemeNotifier(),
+        ),
       ],
-      child: MaterialApp(
-        supportedLocales: L10n.all,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        onGenerateRoute: router.geneateRoute,
-        initialRoute: homePage,
-      ),
+      builder: (context, _) {
+        final ThemeNotifier themeNotifier =
+            Provider.of<ThemeNotifier>(context, listen: true);
+        return MaterialApp(
+          supportedLocales: L10n.all,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          themeMode: themeNotifier.themeMode,
+          theme: MyTheme.lighTheme,
+          darkTheme: MyTheme.darkTheme,
+          onGenerateRoute: router.geneateRoute,
+          initialRoute: homePage,
+        );
+      },
     );
   }
 }

@@ -33,12 +33,14 @@ class _FavoritePageState extends State<FavoritePage> {
       appBar: AppBar(
         title: Text(
           context.loc.favorite,
-          style: titleTextStyle,
+          style:
+              TextStyle(color: Theme.of(context).appBarTheme.backgroundColor),
         ),
         elevation: 0,
         centerTitle: true,
         backgroundColor: const Color(0x00000000),
-        iconTheme: const IconThemeData(color: black, size: 32),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).iconTheme.color, size: 32),
       ),
       body: _favoriteNotifier.placesID.isEmpty
           ? Center(

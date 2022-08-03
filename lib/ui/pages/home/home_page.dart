@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+import 'package:tourist_guide/core/notifiers/theme_notifier.dart';
 import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/pop_up_menu.dart';
@@ -67,16 +68,20 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeNotifier themeNotifier =
+        Provider.of<ThemeNotifier>(context, listen: true);
     Size _screenSize = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-        color: white,
+        color: themeNotifier.isDarkMode ? darkBackgroundColor : white,
         child: Scaffold(
-          backgroundColor: white,
           resizeToAvoidBottomInset: false,
           body: Column(children: [
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [TopBar(), PopUpMenu()],

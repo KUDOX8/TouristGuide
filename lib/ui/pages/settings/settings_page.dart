@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tourist_guide/core/notifiers/theme_notifier.dart';
 import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/ui/shared/widgets/Custom_Button.dart';
 import 'package:tourist_guide/utils/constants.dart';
@@ -12,6 +14,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
+
         child: Container(
           decoration: BoxDecoration( borderRadius: BorderRadius.circular(10.0)),
           padding: const EdgeInsets.all(10.0),

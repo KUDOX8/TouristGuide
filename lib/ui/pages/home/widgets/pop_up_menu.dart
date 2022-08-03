@@ -13,7 +13,11 @@ class PopUpMenu extends StatelessWidget {
       PopupMenuItem(
           padding: EdgeInsets.zero,
           child: ListTile(
-            leading: favoriteIcon,
+            leading: Icon(
+              Icons.favorite_border,
+              size: 25,
+              color: Theme.of(context).iconTheme.color,
+            ),
             title: Text(
               context.loc.favorite,
               style: menuItemTextStyle,
@@ -27,7 +31,11 @@ class PopUpMenu extends StatelessWidget {
       PopupMenuItem(
           padding: EdgeInsets.zero,
           child: ListTile(
-            leading: settingsIcon,
+            leading: Icon(
+              Icons.settings,
+              size: 25,
+              color: Theme.of(context).iconTheme.color,
+            ),
             title: Text(
               context.loc.settings,
               style: menuItemTextStyle,
@@ -40,7 +48,11 @@ class PopUpMenu extends StatelessWidget {
       PopupMenuItem(
           padding: EdgeInsets.zero,
           child: ListTile(
-              leading: exitIcon,
+              leading: Icon(
+                Icons.exit_to_app,
+                size: 25,
+                color: Theme.of(context).iconTheme.color,
+              ),
               title: Text(
                 context.loc.exit,
                 style: menuItemTextStyle,

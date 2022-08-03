@@ -45,7 +45,9 @@ class _CategoriesBarState extends State<CategoriesBar> {
             borderRadius: BorderRadius.circular(20),
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 5),
-              color: typeData['isSelected'] ? selectedCategory : transparent,
+              color: typeData['isSelected']
+                  ? Theme.of(context).primaryColor
+                  : transparent,
               child: TextButton(
                 child: Text(names[index],
                     style: typeData['isSelected']
