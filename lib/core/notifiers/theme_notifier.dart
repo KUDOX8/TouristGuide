@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tourist_guide/core/notifiers/preferences_notifier.dart';
+import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
 class ThemeNotifier with ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.light;
+  ThemeMode themeMode = PreferencesNotifier().prefInstance!.getBool('isLight')!
+      ? ThemeMode.light
+      : ThemeMode.dark;
 
   bool get isDarkMode => themeMode == ThemeMode.dark;
 
-  void toggleTheme(bool isOn) {
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+  void toggleTheme(bool isLight) {
+    themeMode = isLight ? ThemeMode.light : ThemeMode.dark;
     notifyListeners();
   }
 }

@@ -39,6 +39,7 @@ class _PlaceCardState extends State<PlaceCard> {
               ),
               child: Text(
                 widget.placeModel.placeName,
+                textScaleFactor: 1.5,
                 style: const TextStyle(color: white, fontSize: 10),
               ),
             ),
@@ -56,12 +57,16 @@ class _PlaceCardState extends State<PlaceCard> {
                       color: lightBlack),
                   child: Row(
                     children: [
-                      SvgPicture.asset("assets/icons/star.svg", width: 15),
+                      SvgPicture.asset(
+                        "assets/icons/star.svg",
+                        width: 15,
+                      ),
                       const SizedBox(
                         width: 3,
                       ),
                       Text(
                         widget.placeModel.numberOfStars.toString(),
+                        textScaleFactor: 1.5,
                         style: const TextStyle(color: white, fontSize: 10),
                       ),
                     ],

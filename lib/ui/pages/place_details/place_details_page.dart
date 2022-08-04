@@ -27,6 +27,7 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
             padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
             child: SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Stack(
@@ -109,10 +110,16 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    widget.detailedPlaceModel.description,
-                    style: const TextStyle(
-                      fontSize: 12,
+                  SizedBox(
+                    height: _screenSize.height * 0.20,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        widget.detailedPlaceModel.description,
+                        style: const TextStyle(
+                          fontSize: 12,
+                        ),
+                        textScaleFactor: 1.5,
+                      ),
                     ),
                   ),
                   const SizedBox(

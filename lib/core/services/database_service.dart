@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
 import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+import 'package:tourist_guide/core/notifiers/preferences_notifier.dart';
 
 class DatabaseService {
   final FirebaseFirestore _storeInstance = FirebaseFirestore.instance;
@@ -53,5 +54,18 @@ class DatabaseService {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     pref.setStringList('favorite', placesID);
+  }
+
+  void setPrefInstance() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    PreferencesNotifier().prefInstance = pref;
+
+    if (!pref.containsKey('isLight')) {
+      pref.setBool('isLight', true);
+    }
+
+    if (!pref.containsKey('languageCode')) {
+      pref.setString('languageCode', 'en');
+    }
   }
 }

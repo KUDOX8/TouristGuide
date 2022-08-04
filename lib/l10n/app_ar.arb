@@ -19,6 +19,15 @@
     "noPlaceToDisplay": "لا يوجد مكان لعرضه",
     "settings": "الإعدادات",
     "language": "اللغة",
+    "dark": "داكن",
+    "light": "ساطع",
+    "about": "عن",
+    "feedback": "ملاحظة",
+    "contactViaEmail": "للملاحظات تواصل معنا عبر الإيميل",
+    "signYourBusinessWithUs": "سجل مشروعك معنا",
+    "clearYourFavorites": "محو المفضلة",
+    "madeBy": "صنع بواسطة",
+    "version": "إصدار",
     "exit": "خروج"
 
   

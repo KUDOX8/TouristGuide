@@ -90,6 +90,49 @@
     "@language":{
         "description": "Language"
     },
+
+    "dark": "Dark",
+    "@dark":{
+        "description": "dark"
+    },
+
+    "light": "Light",
+    "@light":{
+        "description": "Light"
+    },
+
+    "about": "About",
+    "@about":{
+        "description": "about"
+    },
+
+    "feedback": "Feedback",
+    "@feedback":{
+        "description": "Feedback"
+    },
+    "contactViaEmail": "For the feedback contact us via this Email: ",
+    "@contactViaEmail":{
+        "description": "For the feedback contact us via this Email: "
+    },
+    "signYourBusinessWithUs": "Sign Your Business with us",
+    "@signYourBusinessWithUs":{
+        "description": "Sign Your Business with us"
+    },
+    "clearYourFavorites": "Clear Your Favorites",
+    "@clearYourFavorites":{
+        "description": "Clear Your Favorites"
+    },
+
+    "madeBy": "Made by: ",
+    "@madeBy":{
+        "description": "made by:"
+    },
+
+     "version": "Version",
+    "@version":{
+        "description": "version"
+    },
+
      "exit": "Exit",
     "@exit":{
         "description": "Exit"
