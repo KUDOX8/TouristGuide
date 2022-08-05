@@ -11,14 +11,13 @@ import 'package:tourist_guide/l10n/l10n.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tourist_guide/utils/router.dart' as router;
-
 import 'core/notifiers/preferences_notifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await DatabaseService().getPlaces(PlaceNotifier());
-  DatabaseService().setPrefInstance();
+  await DatabaseService().setPrefInstance();
   FlutterNativeSplash.remove();
 
   runApp(const MyApp());

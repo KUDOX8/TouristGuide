@@ -56,7 +56,7 @@ class DatabaseService {
     pref.setStringList('favorite', placesID);
   }
 
-  void setPrefInstance() async {
+  Future setPrefInstance() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     PreferencesNotifier().prefInstance = pref;
 

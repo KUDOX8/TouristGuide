@@ -16,7 +16,7 @@ class _PlaceGeneratorState extends State<PlaceGenerator> {
   @override
   Widget build(BuildContext context) {
     Size _screenSize = MediaQuery.of(context).size;
-    print(_screenSize.width);
+
     List<PlaceCard> placeCardList = [];
     for (var place in widget.placeList) {
       placeCardList.add(PlaceCard(place));

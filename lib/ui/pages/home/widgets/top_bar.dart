@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_guide/l10n/localization.dart';
-import 'package:tourist_guide/utils/constants.dart';
 
 class TopBar extends StatelessWidget {
   const TopBar({Key? key}) : super(key: key);

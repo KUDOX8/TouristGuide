@@ -50,7 +50,6 @@ class _PlaceCardState extends State<PlaceCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 48,
                   padding: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),

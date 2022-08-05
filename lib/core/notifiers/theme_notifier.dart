@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_guide/core/notifiers/preferences_notifier.dart';
-import 'package:tourist_guide/core/services/database_service.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
 class ThemeNotifier with ChangeNotifier {
