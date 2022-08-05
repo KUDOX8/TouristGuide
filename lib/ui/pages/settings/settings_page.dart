@@ -31,12 +31,12 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Center(
-            child: Text(
+        title: Text(
           context.loc.settings,
           style:
               TextStyle(color: Theme.of(context).appBarTheme.backgroundColor),
-        )),
+        ),
+        centerTitle: true,
         iconTheme: Theme.of(context).iconTheme,
         backgroundColor: Colors.transparent,
       ),
@@ -73,9 +73,6 @@ class _SettingsPageState extends State<SettingsPage> {
                         title: Text(context.loc.dark),
                         selected: !lightSelect,
                         onTap: () {
-                          // setState(() {
-                          //   lightSelect = !lightSelect;
-                          // });
                           PreferencesNotifier()
                               .prefInstance!
                               .setBool('isLight', false);
@@ -88,11 +85,6 @@ class _SettingsPageState extends State<SettingsPage> {
                         title: Text(context.loc.light),
                         selected: lightSelect,
                         onTap: () {
-                          // setState(() {
-                          //   lightSelect = !lightSelect;
-                          // });
-                          // themeNotifier.toggleTheme(lightSelect);
-
                           PreferencesNotifier()
                               .prefInstance!
                               .setBool('isLight', true);

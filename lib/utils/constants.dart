@@ -25,13 +25,13 @@ const Color lightPink = Color(0xFFFBE5E8);
 
 Color darkBackgroundColor = Colors.grey.shade900;
 
-
 // Text Styles
 TextStyle notSelectedStyle = const TextStyle(color: grey);
 TextStyle selectedStyle = const TextStyle(color: black);
 TextStyle menuItemTextStyle = const TextStyle(fontSize: 14);
 TextStyle titleTextStyle = const TextStyle(color: black);
-TextStyle openPlaceStyle = TextStyle(color: Color.fromARGB(255, 37, 223, 49));
+TextStyle openPlaceStyle =
+    const TextStyle(color: Color.fromARGB(255, 37, 223, 49));
 
 // Icons
 Icon exitIcon = const Icon(
