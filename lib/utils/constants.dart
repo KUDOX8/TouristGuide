@@ -46,8 +46,13 @@ Icon favoriteIcon = const Icon(
   Icons.favorite_border,
   size: 25,
 );
+
+// date formatter
+const yyyyMMddFormat = 'yyyy-MM-dd';
 //Routes
 const String homePage = '/';
 const String placeDetailsPage = '/placeDetailsPage';
 const String favoritePage = '/favoritePage';
 const String settingsPage = '/settingsPage';
+const String newEventPage = '/newEventPage';
+const String newEventPicturePage = '/newEventPicturePage';
