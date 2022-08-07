@@ -24,7 +24,9 @@ class _PlaceCardState extends State<PlaceCard> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image: DecorationImage(
-              image: AssetImage(widget.placeModel.imageURL),
+              image: Image.network(
+                      'https://firebasestorage.googleapis.com/v0/b/cool-agility-341013.appspot.com/o/images%2F${widget.placeModel.placeName.replaceAll(" ", "%20")}%2F${widget.placeModel.imageURL}')
+                  .image,
               fit: BoxFit.cover,
             )),
         child: Column(
