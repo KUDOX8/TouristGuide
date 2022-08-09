@@ -18,6 +18,7 @@ class AddLocation extends StatefulWidget {
 class _AddLocationState extends State<AddLocation> {
   String _eventName = '';
   String _eventDiscription = '';
+  double _entryFee = 0.0;
   List<dynamic> arguments = [];
 
   final _toast = FToast();
@@ -290,6 +291,31 @@ class _AddLocationState extends State<AddLocation> {
                 ),
                 const SizedBox(
                   height: 50,
+                ),
+                SizedBox(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      label: const Text(
+                        'Entry Fee',
+                        style: TextStyle(color: grey),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(color: grey, width: 2)),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: 'Left it empty if it is free',
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _entryFee = value as double;
+                      });
+                    },
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                  ),
+                ),
+                const SizedBox(
+                  height: 50.0,
                 ),
                 NavigatorButton(
                     title: 'Next',
