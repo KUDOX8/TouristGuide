@@ -15,7 +15,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
     {'text': 'All', 'isSelected': true},
     {'text': 'Restaurant', 'isSelected': false},
     {'text': 'Park', 'isSelected': false},
-    {'text': 'Cafe', 'isSelected': false},
+    {'text': 'Café', 'isSelected': false},
     {'text': 'Historical', 'isSelected': false},
     {'text': 'Shop', 'isSelected': false},
   ];

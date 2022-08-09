@@ -71,7 +71,6 @@ class _HomeState extends State<Home> {
     final ThemeNotifier themeNotifier =
         Provider.of<ThemeNotifier>(context, listen: true);
     Size _screenSize = MediaQuery.of(context).size;
-
     return SafeArea(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
