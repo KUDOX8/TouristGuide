@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/ui/pages/favorite/favorite_page.dart';
 import 'package:tourist_guide/ui/pages/home/home_page.dart';
+import 'package:tourist_guide/ui/pages/new_location/confirmation.dart';
 import 'package:tourist_guide/ui/pages/new_location/location_info.dart';
 import 'package:tourist_guide/ui/pages/new_location/location_picture.dart';
+import 'package:tourist_guide/ui/pages/new_location/personal_information.dart';
 import 'package:tourist_guide/ui/pages/place_details/place_details_page.dart';
 import 'package:tourist_guide/ui/pages/settings/settings_page.dart';
 import 'package:tourist_guide/utils/constants.dart';
@@ -37,11 +39,18 @@ Route<dynamic> geneateRoute(RouteSettings settings) {
         builder: (context) => const SettingsPage(),
       );
 
-    case newEventPage:
+    case contactIformationPage:
+      return MaterialPageRoute(
+          builder: (context) => const PersonalInformation());
+
+    case newEventInformationPage:
       return MaterialPageRoute(builder: (context) => const AddLocation());
 
     case newEventPicturePage:
       return MaterialPageRoute(builder: (context) => const LocationPicture());
+
+    case newEventConfirmedPage:
+      return MaterialPageRoute(builder: (context) => const Confirmation());
 
     default:
       return MaterialPageRoute(builder: (context) => const Home());

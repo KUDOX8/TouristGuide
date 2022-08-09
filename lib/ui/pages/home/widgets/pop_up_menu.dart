@@ -42,7 +42,7 @@ class PopUpMenu extends StatelessWidget {
             ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, newEventPage);
+              Navigator.pushNamed(context, contactIformationPage);
             },
           )),
       PopupMenuItem(

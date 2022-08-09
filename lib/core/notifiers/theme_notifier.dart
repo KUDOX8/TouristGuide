@@ -24,7 +24,7 @@ class MyTheme {
       color: white,
     ),
     appBarTheme: const AppBarTheme(color: white),
-    hintColor: white,
+    hintColor: lightGrey,
   );
 
   static final lighTheme = ThemeData(

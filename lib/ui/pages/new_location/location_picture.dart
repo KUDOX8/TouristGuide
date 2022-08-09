@@ -18,6 +18,7 @@ class LocationPicture extends StatefulWidget {
 
 class _LocationPictureState extends State<LocationPicture> {
   XFile? image = XFile('');
+  String _locationLink = '';
 
   @override
   Widget build(BuildContext context) {
@@ -41,80 +42,110 @@ class _LocationPictureState extends State<LocationPicture> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
         color: themeNotifier.isDarkMode ? darkBackgroundColor : white,
-        child: Column(
-          children: [
-            SizedBox(
-              height: _screenSize.height * 0.1,
-            ),
-            SizedBox(
-              height: 50,
-              width: _screenSize.width * 0.7,
-              child: const Text(
-                'Add picture',
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: _screenSize.height * 0.03,
               ),
-            ),
-            Stack(alignment: AlignmentDirectional.bottomEnd, children: [
-              LargeNewImage(imagePath: image!.path),
-              cameraButton(title: 'camera'),
-            ]),
-            const SizedBox(
-              height: 20,
-            ),
-            const SizedBox(
-              height: 30.0,
-            ),
-            NavigatorButton(
-              title: 'Finish',
-              onTap: () async {
-                // setState(() {
-                //   isLoading = true;
-                // });
+              SizedBox(
+                height: 50,
+                width: _screenSize.width * 0.7,
+                child: const Text(
+                  'Add picture',
+                  style: TextStyle(
+                    color: purple,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Stack(alignment: AlignmentDirectional.bottomEnd, children: [
+                LargeNewImage(imagePath: image!.path),
+                cameraButton(title: 'camera'),
+              ]),
+              const SizedBox(
+                height: 20,
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              SizedBox(
+                child: TextField(
+                  decoration: InputDecoration(
+                    label: const Text(
+                      'URL of the location',
+                      style: TextStyle(color: grey),
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: grey, width: 2)),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    hintText: 'Enter the URL from google map for the location',
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      _locationLink = value;
+                    });
+                  },
+                  textInputAction: TextInputAction.next,
+                ),
+              ),
+              const SizedBox(
+                height: 50.0,
+              ),
+              NavigatorButton(
+                title: 'Finish',
+                onTap: () async {
+                  // setState(() {
+                  //   isLoading = true;
+                  // });
 
-                // await _db.uploadImages(images, args[0]);
-                // String imagePath = await _db.getImageURL(args[0]);
-                // _db.addNewPlace(
-                //     args[0], args[1], args[2], imagePath, [], 0, 0);
+                  // await _db.uploadImages(images, args[0]);
+                  // String imagePath = await _db.getImageURL(args[0]);
+                  // _db.addNewPlace(
+                  //     args[0], args[1], args[2], imagePath, [], 0, 0);
 
-                // dynamic placeList;
-                // switch (args[1]) {
-                //   case 'Cafe':
-                //     placeList = Provider.of<CafeNotifier>(context,
-                //         listen: false);
-                //     break;
+                  // dynamic placeList;
+                  // switch (args[1]) {
+                  //   case 'Cafe':
+                  //     placeList = Provider.of<CafeNotifier>(context,
+                  //         listen: false);
+                  //     break;
 
-                //   case 'Garden':
-                //     placeList = Provider.of<GardenNotifier>(context,
-                //         listen: false);
-                //     break;
-                //   case 'Mall':
-                //     placeList = Provider.of<MallNotifier>(context,
-                //         listen: false);
-                //     break;
-                //   case 'Most Popular':
-                //     placeList = Provider.of<MostPopularNotifier>(
-                //         context,
-                //         listen: false);
-                //     break;
+                  //   case 'Garden':
+                  //     placeList = Provider.of<GardenNotifier>(context,
+                  //         listen: false);
+                  //     break;
+                  //   case 'Mall':
+                  //     placeList = Provider.of<MallNotifier>(context,
+                  //         listen: false);
+                  //     break;
+                  //   case 'Most Popular':
+                  //     placeList = Provider.of<MostPopularNotifier>(
+                  //         context,
+                  //         listen: false);
+                  //     break;
 
-                //   case 'Restuarant':
-                //     placeList = Provider.of<RestuarantNotifier>(
-                //         context,
-                //         listen: false);
-                //     break;
-                //   default:
-                // }
-                // await _db.getPlaces(
-                //     placeList,
-                //     args[1]
-                //             .toString()
-                //             .replaceAll(' ', '_')
-                //             .toLowerCase() +
-                //         's');
+                  //   case 'Restuarant':
+                  //     placeList = Provider.of<RestuarantNotifier>(
+                  //         context,
+                  //         listen: false);
+                  //     break;
+                  //   default:
+                  // }
+                  // await _db.getPlaces(
+                  //     placeList,
+                  //     args[1]
+                  //             .toString()
+                  //             .replaceAll(' ', '_')
+                  //             .toLowerCase() +
+                  //         's');
 
-                Navigator.popUntil(context, (route) => route.isFirst);
-              },
-            ),
-          ],
+                  Navigator.pushNamed(context, newEventConfirmedPage);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -136,7 +167,7 @@ class _LocationPictureState extends State<LocationPicture> {
   Future pickImage(source) async {
     try {
       image = await ImagePicker().pickImage(
-          source: source, imageQuality: 30, maxHeight: 480, maxWidth: 640);
+          source: source, imageQuality: 80, maxHeight: 480, maxWidth: 640);
 
       // if (image == null || index > 4) return;
 
