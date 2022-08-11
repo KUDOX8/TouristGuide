@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_guide/l10n/localization.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:tourist_guide/ui/pages/search/search_page.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends ConsumerWidget {
   const SearchBar({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final places = ref.watch(placeNotifier);
     return InkWell(
       onTap: () {
         showSearch(
             context: context,
-            delegate:
-                CustomSearchDelegate(placesList: PlaceNotifier().placeList));
+            delegate: CustomSearchDelegate(placesList: places.placeList));
       },
       child: TextField(
         enabled: false,

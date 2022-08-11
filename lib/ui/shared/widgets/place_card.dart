@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tourist_guide/utils/constants.dart';
@@ -25,9 +25,7 @@ class _PlaceCardState extends State<PlaceCard> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image: DecorationImage(
-              image: Image.network(
-                'https://firebasestorage.googleapis.com/v0/b/cool-agility-341013.appspot.com/o/images%2F${widget.placeModel.placeID}%2F1.jpg?alt=media&token=${widget.placeModel.imageURL}',
-              ).image,
+              image: CachedNetworkImageProvider(widget.placeModel.imageURL),
               fit: BoxFit.cover,
             )),
         child: Column(

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/utils/constants.dart';
 
-class CategoriesBar extends StatefulWidget {
+class CategoriesBar extends ConsumerStatefulWidget {
   final Function editList;
   const CategoriesBar(this.editList, {Key? key}) : super(key: key);
 
   @override
-  State<CategoriesBar> createState() => _CategoriesBarState();
+  _CategoriesBarState createState() => _CategoriesBarState();
 }
 
-class _CategoriesBarState extends State<CategoriesBar> {
+class _CategoriesBarState extends ConsumerState<CategoriesBar> {
   List<Map<String, Object>> type = [
     {'text': 'All', 'isSelected': true},
     {'text': 'Restaurant', 'isSelected': false},
@@ -63,10 +64,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
                     },
                   );
                   widget.editList(
-                    typeData['text'],
-                    true,
-                    typeData['isSelected'],
-                  );
+                      typeData['text'], true, typeData['isSelected'], ref);
                 },
                 onLongPress: () {
                   if (typeData['text'] != "All") {
@@ -77,10 +75,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
                       },
                     );
                     widget.editList(
-                      typeData['text'],
-                      false,
-                      typeData['isSelected'],
-                    );
+                        typeData['text'], false, typeData['isSelected'], ref);
                   }
                 },
               ),

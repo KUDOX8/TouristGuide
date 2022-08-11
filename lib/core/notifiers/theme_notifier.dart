@@ -7,11 +7,20 @@ class ThemeNotifier with ChangeNotifier {
       ? ThemeMode.light
       : ThemeMode.dark;
 
+  ThemeMode _prevTheme = PreferencesNotifier().prefInstance!.getBool('isLight')!
+      ? ThemeMode.light
+      : ThemeMode.dark;
+
   bool get isDarkMode => themeMode == ThemeMode.dark;
+  ThemeMode get prevTheme => (_prevTheme);
 
   void toggleTheme(bool isLight) {
     themeMode = isLight ? ThemeMode.light : ThemeMode.dark;
     notifyListeners();
+  }
+
+  set prevTheme(ThemeMode themeMode) {
+    _prevTheme = themeMode;
   }
 }
 

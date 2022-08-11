@@ -1,30 +1,29 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
-import 'package:tourist_guide/core/notifiers/preferences_notifier.dart';
-import 'package:tourist_guide/core/notifiers/theme_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:tourist_guide/l10n/localization.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/utils/constants.dart';
+import '../../../core/services/database_service.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends ConsumerState<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    bool isEnglish =
-        PreferencesNotifier().prefInstance!.getString('languageCode')! == 'en';
-    bool lightSelect = PreferencesNotifier().prefInstance!.getBool('isLight')!;
+    final theme = ref.watch(themeNotifier);
+    final pref = ref.watch(prefNotifier);
+    final favorites = ref.watch(favoriteNotifier);
+    bool isEnglish = pref.prefInstance!.getString('languageCode')! == 'en';
+    bool lightSelect = pref.prefInstance!.getBool('isLight')!;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    final ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
-    final FavoritePlacesNotifier favNotifier =
-        Provider.of<FavoritePlacesNotifier>(context);
 
     double iconsSize = 30;
 
@@ -73,24 +72,20 @@ class _SettingsPageState extends State<SettingsPage> {
                         title: Text(context.loc.dark),
                         selected: !lightSelect,
                         onTap: () {
-                          PreferencesNotifier()
-                              .prefInstance!
-                              .setBool('isLight', false);
-                          themeNotifier.toggleTheme(PreferencesNotifier()
-                              .prefInstance!
-                              .getBool('isLight')!);
+                          if (!lightSelect) return;
+                          pref.prefInstance!.setBool('isLight', false);
+                          theme.toggleTheme(
+                              pref.prefInstance!.getBool('isLight')!);
                         },
                       ),
                       ListTile(
                         title: Text(context.loc.light),
                         selected: lightSelect,
                         onTap: () {
-                          PreferencesNotifier()
-                              .prefInstance!
-                              .setBool('isLight', true);
-                          themeNotifier.toggleTheme(PreferencesNotifier()
-                              .prefInstance!
-                              .getBool('isLight')!);
+                          if (lightSelect) return;
+                          pref.prefInstance!.setBool('isLight', true);
+                          theme.toggleTheme(
+                              pref.prefInstance!.getBool('isLight')!);
                         },
                       ),
                     ],
@@ -119,7 +114,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         title: const Text("العربية"),
                         selected: !isEnglish,
                         onTap: () {
-                          PreferencesNotifier().langeuageCode = 'ar';
+                          if (!isEnglish) return;
+                          pref.langeuageCode = 'ar';
                           setState(() {
                             isEnglish = !isEnglish;
                           });
@@ -129,7 +125,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         title: const Text("English"),
                         selected: isEnglish,
                         onTap: () {
-                          PreferencesNotifier().langeuageCode = 'en';
+                          if (isEnglish) return;
+                          pref.langeuageCode = 'en';
                           setState(() {
                             isEnglish = !isEnglish;
                           });
@@ -210,7 +207,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   OutlinedButton(
                       onPressed: () {
-                        favNotifier.placesID = [];
+                        favorites.placesID = [];
                       },
                       child: Text(
                         context.loc.clearYourFavorites,

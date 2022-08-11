@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
-import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/core/notifiers/preferences_notifier.dart';
+import 'package:tourist_guide/main.dart';
 
 class DatabaseService {
   final FirebaseFirestore _storeInstance = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   void addPlace(DetailedPlaceModel placeModel) {
     _storeInstance.collection('places').add({
@@ -19,15 +24,23 @@ class DatabaseService {
     });
   }
 
-  Future getPlaces(PlaceNotifier placeNotifier) async {
+  Future getPlaces(WidgetRef ref) async {
+    final places = ref.read(placeNotifier);
+    final pref = ref.read(prefNotifier);
     QuerySnapshot placesSnapshot =
         await _storeInstance.collection('places').get();
 
     List<PlaceModel> _placeList = [];
 
     for (var place in placesSnapshot.docs) {
+      QuerySnapshot placeLanguageRef =
+          await place.reference.collection('Languages').get();
+
+      QueryDocumentSnapshot<Object?> placeLanguage = placeLanguageRef.docs
+          .firstWhere((element) =>
+              element.id == pref.prefInstance?.getString('languageCode'));
       PlaceModel placeModel = PlaceModel(
-        placeName: place.get('placeName'),
+        placeName: placeLanguage.get('placeName'),
         placeType: place.get('placeType'),
         placeID: place.id,
         imageURL: place.get('imagePath'),
@@ -37,8 +50,17 @@ class DatabaseService {
       _placeList.add(placeModel);
     }
 
-    PlaceNotifier().placeList = _placeList;
+    places.placeList = _placeList;
   }
+
+  // void changePlacesNamesAndDesc(List<PlaceModel> placesList) async{
+
+  //   for (var place in placesList) {
+  //     place.placeName = PreferencesNotifier().prefInstance.get(key)
+
+  //   }
+
+  // }
 
   void getPlacesID(FavoritePlacesNotifier _favoriteNotifier) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -54,6 +76,12 @@ class DatabaseService {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     pref.setStringList('favorite', placesID);
+  }
+
+  Future<String> getImageURL(String placeID) async {
+    String imageURL =
+        await _storage.ref('images/$placeID/1.jpg').getDownloadURL();
+    return imageURL;
   }
 
   Future setPrefInstance() async {
