@@ -97,7 +97,7 @@ class HomeState extends ConsumerState<Home> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [TopBar(), PopUpMenu()],
+            children: const [TopBar()],
           ),
           const SizedBox(
             height: 50,
