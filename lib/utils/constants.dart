@@ -14,7 +14,7 @@ const Color pink = Color(0xFFFC2355);
 const Color selectedCategory = Color.fromARGB(185, 235, 238, 243);
 const Color priceColor = Color.fromRGBO(0, 230, 118, 1);
 
-Color? goButtonColor = Colors.blue[800];
+Color goButtonColor = Colors.blue[800]!;
 const Color lightBlack = Color.fromRGBO(77, 86, 82, 1.0);
 const Color lightGrey = Color.fromARGB(132, 234, 241, 241);
 
@@ -46,8 +46,15 @@ Icon favoriteIcon = const Icon(
   Icons.favorite_border,
   size: 25,
 );
+
+// date formatter
+const yyyyMMddFormat = 'yyyy-MM-dd';
 //Routes
 const String homePage = '/';
 const String placeDetailsPage = '/placeDetailsPage';
 const String favoritePage = '/favoritePage';
 const String settingsPage = '/settingsPage';
+const String contactIformationPage = '/contactInformationPage';
+const String newEventInformationPage = '/newEventInformationPage';
+const String newEventPicturePage = '/newEventPicturePage';
+const String newEventConfirmedPage = '/newEventConfirmedPage';

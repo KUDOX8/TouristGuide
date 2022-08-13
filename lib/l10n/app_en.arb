@@ -66,6 +66,11 @@
     "@addFavoritePlaces":{
         "description": "Add your favorite places to display it here"
     },
+
+    "newEvent": "New Event",
+    "@newEvent":{
+        "description": "New Event"
+    },
      "price": "Price",
     "@Price":{
         "description": "Price"
@@ -132,6 +137,8 @@
     "@version":{
         "description": "version"
     },
+
+
 
      "exit": "Exit",
     "@exit":{

@@ -32,6 +32,23 @@ class PopUpMenu extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: ListTile(
             leading: Icon(
+              Icons.add_business_outlined,
+              size: 25,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            title: Text(
+              context.loc.newEvent,
+              style: menuItemTextStyle,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, contactIformationPage);
+            },
+          )),
+      PopupMenuItem(
+          padding: EdgeInsets.zero,
+          child: ListTile(
+            leading: Icon(
               Icons.settings,
               size: 25,
               color: Theme.of(context).iconTheme.color,
