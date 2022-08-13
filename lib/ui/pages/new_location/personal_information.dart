@@ -1,21 +1,20 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:provider/provider.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/ui/pages/new_location/widgets/navigator_button.dart';
 
-import '../../../core/notifiers/theme_notifier.dart';
 import '../../../utils/constants.dart';
-import '../../shared/widgets/popup_message.dart';
 
-class PersonalInformation extends StatefulWidget {
+class PersonalInformation extends ConsumerStatefulWidget {
   const PersonalInformation({Key? key}) : super(key: key);
 
   @override
-  State<PersonalInformation> createState() => _PersonalInformationState();
+  _PersonalInformationState createState() => _PersonalInformationState();
 }
 
-class _PersonalInformationState extends State<PersonalInformation> {
+class _PersonalInformationState extends ConsumerState<PersonalInformation> {
   String _fullName = '';
   String _phoneNumber = '';
   String _email = '';
@@ -31,8 +30,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeNotifier themeNotifier =
-        Provider.of<ThemeNotifier>(context, listen: true);
+    final theme = ref.watch(themeNotifier);
     Size _screenSize = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -51,7 +49,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
           body: Container(
               padding:
                   EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-              color: themeNotifier.isDarkMode ? darkBackgroundColor : white,
+              color: theme.isDarkMode ? darkBackgroundColor : white,
               child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,

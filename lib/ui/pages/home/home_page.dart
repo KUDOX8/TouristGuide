@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
 import 'package:tourist_guide/core/services/database_service.dart';
-
 import 'package:tourist_guide/main.dart';
-
 import 'package:tourist_guide/ui/pages/favorite/favorite_page.dart';
-
 import 'package:tourist_guide/ui/pages/home/widgets/categories_bar.dart';
-import 'package:tourist_guide/ui/pages/home/widgets/pop_up_menu.dart';
 import 'package:tourist_guide/ui/pages/home/widgets/top_bar.dart';
+import 'package:tourist_guide/ui/pages/new_location/personal_information.dart';
 import 'package:tourist_guide/ui/pages/search/widgets/search_bar.dart';
 import 'package:tourist_guide/ui/pages/settings/settings_page.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
@@ -23,8 +20,8 @@ class Home extends ConsumerStatefulWidget {
 }
 
 class HomeState extends ConsumerState<Home> {
-  late List<PlaceModel> _shownPlaceCards;
-  late final List<PlaceModel> _all;
+  late List<PlaceModel> _shownPlaceCards = [];
+  late List<PlaceModel> _all = [];
 
   bool _isAllPrev = true;
   void _editList(String type, bool reset, bool isSelected, WidgetRef ref) {
@@ -66,19 +63,19 @@ class HomeState extends ConsumerState<Home> {
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() {
+    _shownPlaceCards = ref.watch(placeNotifier).placeList;
+    _all = ref.watch(placeNotifier).placeList;
+    super.didChangeDependencies();
+  }
+
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  @override
-  void didChangeDependencies() {
-    _shownPlaceCards = ref.watch(placeNotifier).placeList;
-    _all = ref.watch(placeNotifier).placeList;
-    super.didChangeDependencies();
   }
 
   @override
@@ -113,17 +110,22 @@ class HomeState extends ConsumerState<Home> {
           Expanded(child: PlaceGenerator(placeList: _shownPlaceCards))
         ]),
       ),
+      const PersonalInformation(),
       const FavoritePage(),
-      const SettingsPage()
+      const SettingsPage(),
     ];
 
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          fixedColor: Theme.of(context).iconTheme.color,
+          unselectedItemColor: Theme.of(context).iconTheme.color,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.add_business_outlined), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
           ],

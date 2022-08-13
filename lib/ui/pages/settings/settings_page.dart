@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:tourist_guide/l10n/localization.dart';
 import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/utils/constants.dart';
-import '../../../core/services/database_service.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);

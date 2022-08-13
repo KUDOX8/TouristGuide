@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import '../../../core/notifiers/theme_notifier.dart';
-import '../../shared/widgets/popup_message.dart';
 import 'widgets/navigator_button.dart';
 
 class AddLocation extends StatefulWidget {
