@@ -44,8 +44,9 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
-                            image:
-                                AssetImage(widget.detailedPlaceModel.imageURL),
+                            image: Image.network(
+                              'https://firebasestorage.googleapis.com/v0/b/cool-agility-341013.appspot.com/o/images%2F${widget.detailedPlaceModel.placeID}%2F1.jpg?alt=media&token=${widget.detailedPlaceModel.imageURL}',
+                            ).image,
                             fit: BoxFit.cover,
                           ),
                         ),

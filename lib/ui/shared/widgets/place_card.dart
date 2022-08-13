@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tourist_guide/utils/constants.dart';
@@ -24,7 +25,7 @@ class _PlaceCardState extends State<PlaceCard> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image: DecorationImage(
-              image: AssetImage(widget.placeModel.imageURL),
+              image: CachedNetworkImageProvider(widget.placeModel.imageURL),
               fit: BoxFit.cover,
             )),
         child: Column(

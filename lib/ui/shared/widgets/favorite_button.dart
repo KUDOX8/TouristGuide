@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_guide/core/services/database_service.dart';
+import 'package:tourist_guide/main.dart';
 
 import '../../../utils/constants.dart';
 
-class FavoriteButton extends StatefulWidget {
+class FavoriteButton extends ConsumerStatefulWidget {
   final String placeID;
   const FavoriteButton({Key? key, required this.placeID}) : super(key: key);
 
   @override
-  State<FavoriteButton> createState() => _FavoriteButtonState();
+  _FavoriteButtonState createState() => _FavoriteButtonState();
 }
 
-class _FavoriteButtonState extends State<FavoriteButton> {
+class _FavoriteButtonState extends ConsumerState<FavoriteButton> {
   bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
-    FavoritePlacesNotifier _favoriteNotifier =
-        Provider.of<FavoritePlacesNotifier>(context, listen: true);
+    final favorites = ref.watch(favoriteNotifier);
 
-    isFavorite = _favoriteNotifier.placesID.contains(widget.placeID);
+    isFavorite = favorites.placesID.contains(widget.placeID);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(40),
@@ -29,14 +28,13 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         onTap: () {
           isFavorite = !isFavorite;
           if (isFavorite) {
-            _favoriteNotifier.placesID =
-                _favoriteNotifier.placesID + [widget.placeID];
+            favorites.placesID = favorites.placesID + [widget.placeID];
           } else {
-            _favoriteNotifier.placesID.remove(widget.placeID);
-            _favoriteNotifier.placesID = _favoriteNotifier.placesID;
+            favorites.placesID.remove(widget.placeID);
+            favorites.placesID = favorites.placesID;
           }
 
-          DatabaseService().setPlacesID(_favoriteNotifier.placesID);
+          DatabaseService().setPlacesID(favorites.placesID);
 
           setState(() {});
         },

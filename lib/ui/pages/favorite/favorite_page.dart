@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_guide/core/models/place_model.dart';
-import 'package:tourist_guide/core/notifiers/favorite_places_notifiers.dart';
-import 'package:tourist_guide/core/notifiers/place_notifier.dart';
+
 import 'package:tourist_guide/l10n/localization.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/ui/shared/widgets/place_generator.dart';
 
-class FavoritePage extends StatefulWidget {
+class FavoritePage extends ConsumerStatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
 
   @override
-  State<FavoritePage> createState() => _FavoritePageState();
+  _FavoritePageState createState() => _FavoritePageState();
 }
 
-class _FavoritePageState extends State<FavoritePage> {
+class _FavoritePageState extends ConsumerState<FavoritePage> {
   List<PlaceModel> _getFavoritePlaces(
       List<String> placesID, List<PlaceModel> placeModels) {
     List<PlaceModel> favPlaces = [];
@@ -25,8 +25,8 @@ class _FavoritePageState extends State<FavoritePage> {
 
   @override
   Widget build(BuildContext context) {
-    FavoritePlacesNotifier _favoriteNotifier =
-        Provider.of<FavoritePlacesNotifier>(context, listen: true);
+    final favorites = ref.watch(favoriteNotifier);
+    final places = ref.watch(placeNotifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +41,7 @@ class _FavoritePageState extends State<FavoritePage> {
         iconTheme:
             IconThemeData(color: Theme.of(context).iconTheme.color, size: 32),
       ),
-      body: _favoriteNotifier.placesID.isEmpty
+      body: favorites.placesID.isEmpty
           ? Center(
               child: Text(
                 context.loc.addFavoritePlaces,
@@ -50,8 +50,8 @@ class _FavoritePageState extends State<FavoritePage> {
           : Padding(
               padding: const EdgeInsets.all(8.0),
               child: PlaceGenerator(
-                placeList: _getFavoritePlaces(
-                    _favoriteNotifier.placesID, PlaceNotifier().placeList),
+                placeList:
+                    _getFavoritePlaces(favorites.placesID, places.placeList),
               )),
     );
   }
