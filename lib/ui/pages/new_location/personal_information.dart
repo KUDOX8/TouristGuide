@@ -88,7 +88,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           ),
                           validator: (fullName) {
                             if (fullName != null && fullName.length < 6) {
-                              return 'Enter minimum 6 characters';
+                              return 'Enter at least 6 characters';
                             } else {
                               // setState(() {
                               //   _fullName = fullName!;
@@ -151,7 +151,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           ),
                           validator: (email) {
                             if (email != null &&
-                                !EmailValidator.validate(email)) {
+                                !EmailValidator.validate(email.trim())) {
                               return 'Enter a valid email';
                             } else {
                               // setState(() {

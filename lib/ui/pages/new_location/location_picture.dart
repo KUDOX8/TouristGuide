@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -46,6 +48,7 @@ class _LocationPictureState extends State<LocationPicture> {
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
                 SizedBox(
@@ -62,9 +65,31 @@ class _LocationPictureState extends State<LocationPicture> {
                     ),
                   ),
                 ),
-                Stack(alignment: AlignmentDirectional.bottomEnd, children: [
-                  cameraButton(title: 'camera'),
-                ]),
+                FormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  builder: (field) {
+                    return Column(
+                      children: [
+                        Stack(
+                            alignment: AlignmentDirectional.bottomEnd,
+                            children: [
+                              LargeNewImage(imagePath: image!.path),
+                              cameraButton(title: 'camera'),
+                            ]),
+                        Text(field.errorText ?? '',
+                            style:
+                                TextStyle(color: Theme.of(context).errorColor)),
+                      ],
+                    );
+                  },
+                  validator: (value) {
+                    if (image!.path.isEmpty) {
+                      return 'Upload a picture';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -89,9 +114,9 @@ class _LocationPictureState extends State<LocationPicture> {
                       if (url != null && url.isEmpty) {
                         return 'Enter a valid link';
                       } else {
-                        setState(() {
-                          _locationLink = url!;
-                        });
+                        // setState(() {
+                        //   _locationLink = url!;
+                        // });
                         return null;
                       }
                     },
@@ -104,52 +129,10 @@ class _LocationPictureState extends State<LocationPicture> {
                 NavigatorButton(
                   title: 'Finish',
                   onTap: () async {
-                    // setState(() {
-                    //   isLoading = true;
-                    // });
-
-                    // await _db.uploadImages(images, args[0]);
-                    // String imagePath = await _db.getImageURL(args[0]);
-                    // _db.addNewPlace(
-                    //     args[0], args[1], args[2], imagePath, [], 0, 0);
-
-                    // dynamic placeList;
-                    // switch (args[1]) {
-                    //   case 'Cafe':
-                    //     placeList = Provider.of<CafeNotifier>(context,
-                    //         listen: false);
-                    //     break;
-
-                    //   case 'Garden':
-                    //     placeList = Provider.of<GardenNotifier>(context,
-                    //         listen: false);
-                    //     break;
-                    //   case 'Mall':
-                    //     placeList = Provider.of<MallNotifier>(context,
-                    //         listen: false);
-                    //     break;
-                    //   case 'Most Popular':
-                    //     placeList = Provider.of<MostPopularNotifier>(
-                    //         context,
-                    //         listen: false);
-                    //     break;
-
-                    //   case 'Restuarant':
-                    //     placeList = Provider.of<RestuarantNotifier>(
-                    //         context,
-                    //         listen: false);
-                    //     break;
-                    //   default:
-                    // }
-                    // await _db.getPlaces(
-                    //     placeList,
-                    //     args[1]
-                    //             .toString()
-                    //             .replaceAll(' ', '_')
-                    //             .toLowerCase() +
-                    //         's');
-
-                    Navigator.pushNamed(context, newEventConfirmedPage);
+                    final isValidForm = _formKey.currentState!.validate();
+                    if (isValidForm) {
+                      Navigator.pushNamed(context, newEventConfirmedPage);
+                    }
                   },
                 ),
               ],
@@ -174,16 +157,12 @@ class _LocationPictureState extends State<LocationPicture> {
       );
 
   Future pickImage(source) async {
-    try {
-      image = await ImagePicker().pickImage(
-          source: source, imageQuality: 80, maxHeight: 480, maxWidth: 640);
+    final tempImage = await ImagePicker().pickImage(
+        source: source, imageQuality: 80, maxHeight: 480, maxWidth: 640);
+    if (tempImage == null) return;
 
-      // if (image == null || index > 4) return;
+    image = tempImage;
 
-      // final imagetemporary = XFile(image.path);
-      setState(() {});
-    } on PlatformException {
-      return null;
-    }
+    setState(() {});
   }
 }
