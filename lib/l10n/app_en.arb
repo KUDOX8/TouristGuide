@@ -143,7 +143,163 @@
      "exit": "Exit",
     "@exit":{
         "description": "Exit"
-    }
-    
+    },
 
+        "name": "Name",
+        "@name":{
+                "description": "name"
+            },
+
+        "pNum":"Phone Number",
+        "@pNum":{
+                "description": "Exit"
+            },
+
+        "email":"Email",
+        "@email":{
+                "description": "Email"
+            },
+
+        "next": "Next",
+        "@next":{
+                "description": "Next"
+            },
+
+        "contactInfo": "Contact Information",
+        "@contactInfo":{
+                "description": "Contact Information"
+            },
+
+        "newEvent": "New Event",
+        "@newEvent":{
+                "description": "New Event"
+            },
+
+        "wFullName": "Write your full name",
+        "@wFullName":{
+                        "description": "Write your full name"
+                    },
+
+        "eFullName": "Enter your full name",
+        "@eFullName":{
+                        "description": "Enter your full name"
+                    },
+
+         "wEmail": "Write your Email",
+        "@wEmail":{
+                        "description": "Write your Email"
+                    },
+
+        "wPNum": "Write Your Phone Number",
+        "@wPNum":{
+                        "description": "Write Your Phone Number"
+                    },
+
+
+        "eventInfo": "Event Information",
+        "@eventInfo":{
+                        "description": "Event Information"
+                    },
+
+        "eventName": "Write Your Phone Number",
+        "@eventName":{
+                        "description": "Write Your Phone Number"
+                    },
+
+        "eEventName": "Enter the name of the event",
+        "@eEventName":{
+                        "description": "Enter the name of the event"
+                    },
+
+        "description": "Description",
+        "@description":{
+                        "description": "description"
+                    },
+
+        "wDescription": "Write Information about the event",
+        "@wDescription":{
+                        "description": "Write Information about the event"
+                    },
+
+       "startDate": "Start Date",
+        "@startDate":{
+                        "description": "start Date"
+                    },
+
+        "endDate": "End Date",
+        "@endDate":{
+                        "description": "end Date"
+                    },
+
+
+        "openTime": "Open Time",
+        "@openTime":{
+                        "description": "open Time"
+                    },
+
+        "closeTime": "Close Time",
+        "@closeTime":{
+                        "description": "closing time"
+                    },
+
+        "entryFee": "Entry Fee",
+        "@entryFee":{
+                        "description": "Fees"
+                    },
+
+        "leftItEmpty": "Leave It Empty if the event is free",
+        "@leftItEmpty":{
+                        "description": " "
+                    },
+
+        "wEventName": "Please write event name",
+        "@endTime":{
+                        "description": " "
+                    },
+
+        "wInfoAbout": "Please write information about the event",
+        "@wInfoAbout":{
+                        "description": " "
+                    },
+
+        "addPic": "Add Picture",
+                "@addPic":{
+                                "description": "Add Picture"
+                            },
+
+        "camera": "Camera",
+                "@camera":{
+                                "description": "camera"
+                            },
+
+        "urlLocation": "URL of the Location",
+                "@urlLocation":{
+                                "description": " "
+                            },
+
+        "eURL": "Enter the URL from google map for the location",
+                "@eURL":{
+                                "description": " "
+                            },
+
+        "finish": "Finish",
+                "@finish":{
+                                 "description": " "
+                            },
+
+        "thanks": "Thanks",
+                        "@thanks":{
+                                   "description": " "
+                        },
+
+
+        "submission": "Your submission has been received !",
+                        "@submission":{
+                                   "description": " "
+                        },
+
+        "homePage": "Home Page",
+                        "@homePage":{
+                                   "description": " "
+                        }
 }
