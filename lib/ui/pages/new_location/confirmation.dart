@@ -33,7 +33,7 @@ class Confirmation extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                Text('Your submision has been received'),
+                Text(''),
               ]),
               NavigatorButton(
                   title: 'Home Page',
