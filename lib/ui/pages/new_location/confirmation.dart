@@ -36,8 +36,10 @@ class Confirmation extends ConsumerWidget {
               ]),
               NavigatorButton(
                   title: 'Home Page',
-                  onTap: () =>
-                      Navigator.popUntil(context, (route) => route.isFirst))
+                  onTap: () {
+                    Navigator.popUntil(context, (route) => true);
+                    Navigator.pushNamed(context, homePage);
+                  }),
             ],
           )),
     );
