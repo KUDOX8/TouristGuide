@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,13 +22,7 @@ class _PersonalInformationState extends ConsumerState<PersonalInformation> {
   String _phoneNumber = '';
   String _email = '';
   List<dynamic> arguments = [];
-  final _toast = FToast();
-  @override
-  void initState() {
-    super.initState();
-    _toast.init(context);
-  }
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeNotifier);
@@ -51,134 +46,138 @@ class _PersonalInformationState extends ConsumerState<PersonalInformation> {
                   EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
               color: theme.isDarkMode ? darkBackgroundColor : white,
               child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: _screenSize.height * 0.05),
-                    SizedBox(
-                      child: Text(
-                        context.loc.contactInfo,
-                        style: const TextStyle(
-                          color: purple,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: _screenSize.height * 0.08,
-                    ),
-                    SizedBox(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          label: Text(
-                            context.loc.name,
-                            style: const TextStyle(color: grey),
+                child: Form(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: _screenSize.height * 0.05),
+                      SizedBox(
+                        child: Text(
+                          context.loc.contactInfo,
+                          style: const TextStyle(
+                            color: purple,
+                            fontWeight: FontWeight.bold,
                           ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide:
-                                  const BorderSide(color: grey, width: 2)),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText: context.loc.eFullName,
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            _fullName = value;
-                          });
-                        },
-                        textInputAction: TextInputAction.next,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 50.0,
-                    ),
-                    SizedBox(
-                      child: TextField(
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                          label: Text(
-                            context.loc.pNum,
-                            style: const TextStyle(color: grey),
+                      SizedBox(
+                        height: _screenSize.height * 0.08,
+                      ),
+                      SizedBox(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            label: Text(
+                              context.loc.name,
+                              style: const TextStyle(color: grey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    const BorderSide(color: grey, width: 2)),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            hintText: context.loc.eFullName,
                           ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide:
-                                  const BorderSide(color: grey, width: 2)),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText: '05xxxxxx',
+                          validator: (fullName) {
+                            if (fullName != null && fullName.length < 6) {
+                              return 'Enter at least 6 characters';
+                            } else {
+                              // setState(() {
+                              //   _fullName = fullName!;
+                              // });
+
+                              return null;
+                            }
+                          },
+                          textInputAction: TextInputAction.next,
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            _phoneNumber = value;
-                          });
-                        },
-                        textInputAction: TextInputAction.next,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 50.0,
-                    ),
-                    SizedBox(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          label: Text(
-                            context.loc.email,
-                            style: const TextStyle(color: grey),
+                      const SizedBox(
+                        height: 50.0,
+                      ),
+                      SizedBox(
+                        child: TextFormField(
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            label: Text(
+                              context.loc.pNum,
+                              style: const TextStyle(color: grey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    const BorderSide(color: grey, width: 2)),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            hintText: '05xxxxxx',
                           ),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide:
-                                  const BorderSide(color: grey, width: 2)),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText: 'person@xxxx.com',
+                          validator: (number) {
+                            if (number != null && number.length != 10) {
+                              return 'Enter 10 numbers';
+                            } else {
+                              // setState(() {
+                              //   _phoneNumber = number!;
+                              // });
+
+                              return null;
+                            }
+                          },
+                          textInputAction: TextInputAction.next,
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            _email = value;
-                          });
-                        },
-                        textInputAction: TextInputAction.next,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    NavigatorButton(
-                        title: context.loc.next,
-                        onTap: () {
-                          if (_fullName.trim().isEmpty) {
-                            _toast.showToast(
-                              child: PopUpMessage(
-                                message: context.loc.wFullName,
-                              ),
-                              gravity: ToastGravity.BOTTOM,
-                            );
-                          } else if (_phoneNumber.trim().isEmpty) {
-                            _toast.showToast(
-                              child: PopUpMessage(
-                                message: context.loc.wPNum,
-                              ),
-                              gravity: ToastGravity.BOTTOM,
-                            );
-                          } else if (_email.trim().isEmpty) {
-                            _toast.showToast(
-                              child: PopUpMessage(
-                                message: context.loc.wEmail,
-                              ),
-                              gravity: ToastGravity.BOTTOM,
-                            );
-                          } else {
-                            setState(() {
-                              arguments.add(_fullName.trim());
-                              arguments.add(_phoneNumber.trim());
-                              arguments.add(_email.trim());
-                            });
-                            Navigator.pushNamed(
-                                context, newEventInformationPage,
-                                arguments: arguments);
-                          }
-                        }),
-                  ],
+                      const SizedBox(
+                        height: 50.0,
+                      ),
+                      SizedBox(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            label: Text(
+                              context.loc.email,
+                              style: const TextStyle(color: grey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    const BorderSide(color: grey, width: 2)),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            hintText: 'person@xxxx.com',
+                          ),
+                          validator: (email) {
+                            if (email != null &&
+                                !EmailValidator.validate(email.trim())) {
+                              return 'Enter a valid email';
+                            } else {
+                              // setState(() {
+                              //   _email = email!;
+                              // });
+                              return null;
+                            }
+                          },
+                          textInputAction: TextInputAction.next,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      NavigatorButton(
+                          title: context.loc.next,
+                          onTap: () {
+                            final isValidForm =
+                                _formKey.currentState!.validate();
+                            if (isValidForm) {
+                              setState(() {
+                                arguments.add(_fullName.trim());
+                                arguments.add(_phoneNumber.trim());
+                                arguments.add(_email.trim());
+                              });
+
+                              Navigator.pushNamed(
+                                  context, newEventInformationPage,
+                                  arguments: arguments);
+                            }
+                          }),
+                    ],
+                  ),
                 ),
               ))),
     );

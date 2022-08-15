@@ -21,7 +21,7 @@ class LocationPicture extends ConsumerStatefulWidget {
 class _LocationPictureState extends ConsumerState<LocationPicture> {
   XFile? image = XFile('');
   String _locationLink = '';
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeNotifier);
@@ -44,108 +44,93 @@ class _LocationPictureState extends ConsumerState<LocationPicture> {
         padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
         color: theme.isDarkMode ? darkBackgroundColor : white,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: _screenSize.height * 0.03,
-              ),
-              SizedBox(
-                height: 50,
-                width: _screenSize.width * 0.7,
-                child: Text(
-                  context.loc.addPic,
-                  style: const TextStyle(
-                    color: purple,
-                    fontWeight: FontWeight.bold,
-                  ),
+          child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: _screenSize.height * 0.03,
                 ),
-              ),
-              Stack(alignment: AlignmentDirectional.bottomEnd, children: [
-                LargeNewImage(imagePath: image!.path),
-                cameraButton(title: context.loc.camera),
-              ]),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              SizedBox(
-                child: TextField(
-                  decoration: InputDecoration(
-                    label: Text(
-                      context.loc.urlLocation,
-                      style: TextStyle(color: grey),
+                SizedBox(
+                  height: 50,
+                  width: _screenSize.width * 0.7,
+                  child: Text(
+                    context.loc.addPic,
+                    style: const TextStyle(
+                      color: purple,
+                      fontWeight: FontWeight.bold,
                     ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: grey, width: 2)),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintText: context.loc.eURL,
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      _locationLink = value;
-                    });
-                  },
-                  textInputAction: TextInputAction.next,
                 ),
-              ),
-              const SizedBox(
-                height: 50.0,
-              ),
-              NavigatorButton(
-                title: context.loc.finish,
-                onTap: () async {
-                  // setState(() {
-                  //   isLoading = true;
-                  // });
-
-                  // await _db.uploadImages(images, args[0]);
-                  // String imagePath = await _db.getImageURL(args[0]);
-                  // _db.addNewPlace(
-                  //     args[0], args[1], args[2], imagePath, [], 0, 0);
-
-                  // dynamic placeList;
-                  // switch (args[1]) {
-                  //   case 'Cafe':
-                  //     placeList = Provider.of<CafeNotifier>(context,
-                  //         listen: false);
-                  //     break;
-
-                  //   case 'Garden':
-                  //     placeList = Provider.of<GardenNotifier>(context,
-                  //         listen: false);
-                  //     break;
-                  //   case 'Mall':
-                  //     placeList = Provider.of<MallNotifier>(context,
-                  //         listen: false);
-                  //     break;
-                  //   case 'Most Popular':
-                  //     placeList = Provider.of<MostPopularNotifier>(
-                  //         context,
-                  //         listen: false);
-                  //     break;
-
-                  //   case 'Restuarant':
-                  //     placeList = Provider.of<RestuarantNotifier>(
-                  //         context,
-                  //         listen: false);
-                  //     break;
-                  //   default:
-                  // }
-                  // await _db.getPlaces(
-                  //     placeList,
-                  //     args[1]
-                  //             .toString()
-                  //             .replaceAll(' ', '_')
-                  //             .toLowerCase() +
-                  //         's');
-
-                  Navigator.pushNamed(context, newEventConfirmedPage);
-                },
-              ),
-            ],
+                FormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  builder: (field) {
+                    return Column(
+                      children: [
+                        Stack(
+                            alignment: AlignmentDirectional.bottomEnd,
+                            children: [
+                              LargeNewImage(imagePath: image!.path),
+                              cameraButton(title: 'camera'),
+                            ]),
+                        Text(field.errorText ?? '',
+                            style:
+                                TextStyle(color: Theme.of(context).errorColor)),
+                      ],
+                    );
+                  },
+                  validator: (value) {
+                    if (image!.path.isEmpty) {
+                      return 'Upload a picture';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                SizedBox(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      label: Text(
+                        context.loc.urlLocation,
+                        style: const TextStyle(color: grey),
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(color: grey, width: 2)),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintText: context.loc.eURL,
+                    ),
+                    validator: (url) {
+                      if (url != null && url.isEmpty) {
+                        return 'Enter a valid link';
+                      } else {
+                        // setState(() {
+                        //   _locationLink = url!;
+                        // });
+                        return null;
+                      }
+                    },
+                    textInputAction: TextInputAction.next,
+                  ),
+                ),
+                const SizedBox(
+                  height: 50.0,
+                ),
+                NavigatorButton(
+                  title: context.loc.finish,
+                  onTap: () async {
+                    final isValidForm = _formKey.currentState!.validate();
+                    if (isValidForm) {
+                      Navigator.pushNamed(context, newEventConfirmedPage);
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -167,12 +152,13 @@ class _LocationPictureState extends ConsumerState<LocationPicture> {
 
   Future pickImage(source) async {
     try {
-      image = await ImagePicker().pickImage(
+      final tempImage = await ImagePicker().pickImage(
           source: source, imageQuality: 80, maxHeight: 480, maxWidth: 640);
-
+      if (tempImage == null) return;
       // if (image == null || index > 4) return;
 
       // final imagetemporary = XFile(image.path);
+      image = tempImage;
       setState(() {});
     } on PlatformException {
       return null;
