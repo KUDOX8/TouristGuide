@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import '../../../core/notifiers/theme_notifier.dart';
 import '../../shared/widgets/popup_message.dart';
 import 'widgets/navigator_button.dart';
 import 'package:tourist_guide/l10n/localization.dart';
 
-class AddLocation extends StatefulWidget {
+class AddLocation extends ConsumerStatefulWidget {
   static const String id = '/add_location';
   const AddLocation({Key? key}) : super(key: key);
 
@@ -16,7 +17,7 @@ class AddLocation extends StatefulWidget {
   _AddLocationState createState() => _AddLocationState();
 }
 
-class _AddLocationState extends State<AddLocation> {
+class _AddLocationState extends ConsumerState<AddLocation> {
   String _eventName = '';
   String _eventDiscription = '';
   double _entryFee = 0.0;
@@ -41,8 +42,7 @@ class _AddLocationState extends State<AddLocation> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeNotifier themeNotifier =
-        Provider.of<ThemeNotifier>(context, listen: true);
+    final theme = ref.watch(themeNotifier);
     Size _screenSize = MediaQuery.of(context).size;
 
     return GestureDetector(
@@ -63,12 +63,12 @@ class _AddLocationState extends State<AddLocation> {
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-            color: themeNotifier.isDarkMode ? darkBackgroundColor : white,
+            color: theme.isDarkMode ? darkBackgroundColor : white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: _screenSize.height * 0.05),
-                 SizedBox(
+                SizedBox(
                   child: Text(
                     context.loc.eventInfo,
                     style: const TextStyle(
@@ -158,7 +158,7 @@ class _AddLocationState extends State<AddLocation> {
                         width: 140,
                         child: TextField(
                           decoration: InputDecoration(
-                              label:  Text(context.loc.startDate),
+                              label: Text(context.loc.startDate),
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
                               disabledBorder: OutlineInputBorder(
@@ -194,7 +194,7 @@ class _AddLocationState extends State<AddLocation> {
                         width: 140,
                         child: TextField(
                           decoration: InputDecoration(
-                              label:  Text(context.loc.endDate),
+                              label: Text(context.loc.endDate),
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
                               disabledBorder: OutlineInputBorder(
@@ -272,7 +272,7 @@ class _AddLocationState extends State<AddLocation> {
                         width: 140,
                         child: TextField(
                           decoration: InputDecoration(
-                              label:  Text(context.loc.closeTime),
+                              label: Text(context.loc.closeTime),
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.always,
                               disabledBorder: OutlineInputBorder(
@@ -296,7 +296,7 @@ class _AddLocationState extends State<AddLocation> {
                 SizedBox(
                   child: TextField(
                     decoration: InputDecoration(
-                      label:  Text(
+                      label: Text(
                         context.loc.entryFee,
                         style: const TextStyle(color: grey),
                       ),
@@ -323,14 +323,14 @@ class _AddLocationState extends State<AddLocation> {
                     onTap: () {
                       if (_eventName.isEmpty) {
                         _toast.showToast(
-                          child:  PopUpMessage(
+                          child: PopUpMessage(
                             message: context.loc.wEventName,
                           ),
                           gravity: ToastGravity.BOTTOM,
                         );
                       } else if (_eventDiscription.trim().isEmpty) {
                         _toast.showToast(
-                          child:  PopUpMessage(
+                          child: PopUpMessage(
                             message: context.loc.wInfoAbout,
                           ),
                           gravity: ToastGravity.BOTTOM,

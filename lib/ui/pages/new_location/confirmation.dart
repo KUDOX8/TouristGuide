@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/ui/pages/new_location/widgets/navigator_button.dart';
 
-import '../../../core/notifiers/theme_notifier.dart';
 import '../../../utils/constants.dart';
 
-class Confirmation extends StatelessWidget {
+class Confirmation extends ConsumerWidget {
   const Confirmation({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final ThemeNotifier themeNotifier =
-        Provider.of<ThemeNotifier>(context, listen: true);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeNotifier);
     final Size _screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-          color: themeNotifier.isDarkMode ? darkBackgroundColor : white,
+          color: theme.isDarkMode ? darkBackgroundColor : white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

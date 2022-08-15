@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
+import 'package:tourist_guide/main.dart';
 import 'package:tourist_guide/ui/pages/new_location/widgets/large_new_image.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import '../../../core/notifiers/theme_notifier.dart';
 import 'widgets/navigator_button.dart';
 import 'package:tourist_guide/l10n/localization.dart';
 
-class LocationPicture extends StatefulWidget {
+class LocationPicture extends ConsumerStatefulWidget {
   static const String id = '/location_picture';
 
   const LocationPicture({Key? key}) : super(key: key);
@@ -17,14 +18,13 @@ class LocationPicture extends StatefulWidget {
   _LocationPictureState createState() => _LocationPictureState();
 }
 
-class _LocationPictureState extends State<LocationPicture> {
+class _LocationPictureState extends ConsumerState<LocationPicture> {
   XFile? image = XFile('');
   String _locationLink = '';
 
   @override
   Widget build(BuildContext context) {
-    final ThemeNotifier themeNotifier =
-        Provider.of<ThemeNotifier>(context, listen: true);
+    final theme = ref.watch(themeNotifier);
     final Size _screenSize = MediaQuery.of(context).size;
     final args = ModalRoute.of(context)!.settings.arguments as List;
 
@@ -42,7 +42,7 @@ class _LocationPictureState extends State<LocationPicture> {
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: _screenSize.width * 0.08),
-        color: themeNotifier.isDarkMode ? darkBackgroundColor : white,
+        color: theme.isDarkMode ? darkBackgroundColor : white,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -52,7 +52,7 @@ class _LocationPictureState extends State<LocationPicture> {
               SizedBox(
                 height: 50,
                 width: _screenSize.width * 0.7,
-                child:  Text(
+                child: Text(
                   context.loc.addPic,
                   style: const TextStyle(
                     color: purple,
@@ -73,7 +73,7 @@ class _LocationPictureState extends State<LocationPicture> {
               SizedBox(
                 child: TextField(
                   decoration: InputDecoration(
-                    label:  Text(
+                    label: Text(
                       context.loc.urlLocation,
                       style: TextStyle(color: grey),
                     ),
