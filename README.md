@@ -1,16 +1,21 @@
-# tourist_guide
+# Ahsa Tourist Guide
 
-A new Flutter project.
+Ahsa Tourist Guide (ATG) is an Andrioid and IOS application that its main porpuse is to show the different places to visit in Al-Ahsa, Saudi Arabia.
 
-## Getting Started
+## Story behind it
 
-This project is a starting point for a Flutter application.
+This project is an intern program poject that is requested by Al-Ahsa Municipality and made private.
+However, since the period is finished, and the company is no longer interested in the app, we decided to make it public for those who are interested in continuing developing it.
 
-A few resources to get you started if this is your first Flutter project:
+## To built it
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is developed using Flutter framework.
+To build it, make sure you have:
+  - dart: ">=2.17.0 <3.0.0"
+  - flutter: ">=3.0.0"
+ 
+ and don't forget to run
+ `
+ Flutter pub get
+ `
+ to get the all the dependencies listed in the [pubspec.yaml](https://github.com/KUDOX8/TouristGuide/blob/main/pubspec.yaml) file
