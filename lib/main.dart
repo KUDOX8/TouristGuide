@@ -7,6 +7,7 @@ import 'package:tourist_guide/core/notifiers/place_notifier.dart';
 import 'package:tourist_guide/core/notifiers/preferences_notifier.dart';
 import 'package:tourist_guide/core/notifiers/theme_notifier.dart';
 import 'package:tourist_guide/l10n/l10n.dart';
+import 'package:tourist_guide/ui/shared/pages/splash_page/splash_page.dart';
 import 'package:tourist_guide/utils/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tourist_guide/utils/initialization.dart';
@@ -18,8 +19,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await DatabaseService().setPrefInstance();
-
-  FlutterNativeSplash.remove();
 
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -35,8 +34,6 @@ final placeNotifier =
 
 class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // final _initialize = Initialization.initialize();
 
   // This widget is the root of your application.
   @override
@@ -59,7 +56,9 @@ class MyApp extends ConsumerWidget {
             initialRoute: homePage,
           );
         } else {
-          return MaterialApp();
+          return MaterialApp(
+            builder: (context, child) => const SplashPage(),
+          );
         }
       },
     );
