@@ -7,6 +7,14 @@ Ahsa Tourist Guide (ATG) is an Andrioid and IOS application that its main porpus
 This project is an intern program poject that is requested by Al-Ahsa Municipality and made private.
 However, since the period is finished, and the company is no longer interested in the app, we decided to make it public for those who are interested in continuing developing it.
 
+## Screenshots
+<pre>
+                Home                                        Settings                                      Favorites
+             
+    <img src="images/home_page.png" width="250">            <img src="images/settings_page.png" width="250" >           <img src="images/favorites_page.png" width="250" >
+                                                             
+ </pre>
+
 ## To built it
 
 This project is developed using Flutter framework.
