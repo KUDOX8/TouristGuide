@@ -217,20 +217,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   Column(
                     children: [
                       Text(
-                        context.loc.madeBy,
-                      ),
-                      Column(
-                        children: [
-                          Image.asset(
-                            "assets/images/AlAhsa_logo.png",
-                            width: width / 4,
-                            height: height / 4,
-                          ),
-                          Text(
-                            "${context.loc.version} 1.0.0 v ",
-                            style: const TextStyle(color: grey),
-                          ),
-                        ],
+                        "${context.loc.version} 1.0.0 v ",
+                        style: const TextStyle(color: grey),
                       ),
                     ],
                   )
