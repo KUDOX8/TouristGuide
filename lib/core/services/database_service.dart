@@ -51,15 +51,7 @@ class DatabaseService {
     places.placeList = _placeList;
   }
 
-  // void changePlacesNamesAndDesc(List<PlaceModel> placesList) async{
-
-  //   for (var place in placesList) {
-  //     place.placeName = PreferencesNotifier().prefInstance.get(key)
-
-  //   }
-
-  // }
-
+  
   void getPlacesID(FavoritePlacesNotifier _favoriteNotifier) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
